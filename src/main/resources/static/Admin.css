@@ -1,0 +1,38 @@
+:root {
+  --red-color: red;
+  --white-color: #fff;
+}
+.main{
+    background-color: white;
+}
+a.link-body-emphasis:hover {
+    /* Điều chỉnh màu chữ khi hover */
+    color: #c4c4c4; /* Màu chữ thay đổi khi hover */
+  
+    /* Điều chỉnh các thuộc tính của SVG hoặc biểu tượng khi hover */
+  }
+  i{
+    color: var(--red-color);
+  }
+  .bg-body-tertiary {
+    background-color: var(--red-color); /* Thiết lập màu nền thành trắng (#fff) */
+  }
+  main {
+    background-color: rgb(255, 255, 255); /* Đặt màu nền thành trắng (#fff) */
+    transition: background-color 0.3s; /* Tạo hiệu ứng transition màu nền */
+  }
+
+#sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-y: auto; /* Để tạo thanh cuộn cho sidebar nếu nó quá dài */
+    background-color: #ffffff !important; /* Màu nền của sidebar */
+    padding: 15px; /* Khoảng cách nội dung từ biên của sidebar */
+    z-index: 1; /* Để đảm bảo sidebar ở trên cùng */
+}
+.list-item .nav-item .invidual-item:hover{
+  background-color: red;
+  color: var(--white-color);
+}

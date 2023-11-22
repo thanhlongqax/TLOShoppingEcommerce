@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TLO Shop</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" th:href="@{/HomePage.css}">
+
+</head>
+
+<body>
+    <!-- header section starts  -->
+
+    <header class="header">
+        <a href="#" class="logo"> <i class="fas fa-shopping-cart"></i>TLOShop </a>
+        <nav class="navbar">
+            <a href="/HomePage">Trang Chủ</a>
+            <a href="/HomePage">Sản Phẩm</a>
+            <a href="#review">Review</a>
+            <a href="#contact">Liên Hệ</a>
+            <a href="#blogs">Blogs</a>
+            <a href="/Login">Đăng Nhập</a>
+        </nav>
+
+        <div class="icons">
+            <div id="menu-btn" class="fas fa-bars"></div>
+            <div id="search-btn" class="fas fa-search"></div>
+            <a onclick=" showCart()" class="fas fa-shopping-cart"></a>
+            <a href="#" class="fas fa-heart"></a>
+        </div>
+
+        <form action="" class="search-form" onkeydown="searchBox()">
+            <input type="text" name="search" id="search-box" placeholder="Search here... ">
+            <label class="fas fa-search"></label>
+        </form>
+
+
+    </header>
+
+    <!-- header section ends -->
+
+    <!-- banner section starts  -->
+    <div id="showCart">
+        <table>
+            <tr>
+                <td>STT</td>
+                <td>Tên Sản Phẩm</td>
+                <td>Số Lượng</td>
+                <td>Thành Tiền</td>
+            </tr>
+            <tbody id="myCart"></tbody>
+        </table>
+    </div>
+
+    <section class="banner-container">
+
+        <div class="banner">
+            <img src="/HomePage_img/shop_banner_img1.jpg" alt="">
+            <div class="content">
+                <span>special offer</span>
+                <h3>upto 50% off</h3>
+                <a href="#" class="btn">shop now</a>
+            </div>
+        </div>
+
+        <div class="banner">
+            <img src="/HomePage_img/shop_banner_img2.jpg" alt="">
+            <div class="content">
+                <span>special offer</span>
+                <h3>upto 50% off</h3>
+                <a href="#" class="btn">shop now</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- banner section ends -->
+
+    <!-- products section starts  -->
+
+    <section class="products" id="products">
+
+        <h1 class="heading"> Sản Phẩm<span> Độc Quyền</span> </h1>
+
+        <div class="filter-buttons">
+            <div class="buttons active" data-filter="all">Tất Cả</div>
+            <div class="buttons" data-filter="arrivals">Sản Phẩm Mới</div>
+            <div class="buttons" data-filter="special">Khuyến Mãi Đặc Biệt</div>
+            <div class="buttons" data-filter="seller">Bán Chạy Nhất</div>
+        </div>
+
+        <div class="box-container" id="product-container">
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+    </section>
+
+    <!-- featured section ends -->
+
+
+    <!-- blogs  section starts  -->
+
+    <section class="blogs" id="blogs">
+
+        <h1 class="heading"> our <span>blogs</span></h1>
+        <div class="swiper blogs-slider">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <img src="/HomePage_img/blogs/blog1.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Hãy Đến với TLOShop </h3>
+                        <p>Hân Hạnh Được Phục Vụ Quý Khách Hàng</p>
+                        <a href="#" class="btn">Đọc Thêm</a>
+                        <div class="icons">
+                            <a href="#"> <i class="fas fa-calendar"></i> 21st October, 2023 </a>
+                            <a href="#"> <i class="fas fa-user"></i> Trang Chủ </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <img src="/HomePage_img/blogs/blog2.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Hãy Đến với TLOShop </h3>
+                        <p>Hân Hạnh Được Phục Vụ Quý Khách Hàng</p>
+                        <a href="#" class="btn">Đọc Thêm</a>
+                        <div class="icons">
+                            <a href="#"> <i class="fas fa-calendar"></i> 21st October, 2023 </a>
+                            <a href="#"> <i class="fas fa-user"></i> Trang Chủ </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <img src="/HomePage_img/blogs/blog3.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Hãy Đến với TLOShop </h3>
+                        <p>Hân Hạnh Được Phục Vụ Quý Khách Hàng</p>
+                        <a href="#" class="btn">Đọc Thêm</a>
+                        <div class="icons">
+                            <a href="#"> <i class="fas fa-calendar"></i> 21st October, 2023 </a>
+                            <a href="#"> <i class="fas fa-user"></i> Trang Chủ </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <img src="/HomePage_img/blogs/blog4.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Hãy Đến với TLOShop </h3>
+                        <p>Hân Hạnh Được Phục Vụ Quý Khách Hàng</p>
+                        <a href="#" class="btn">Đọc Thêm</a>
+                        <div class="icons">
+                            <a href="#"> <i class="fas fa-calendar"></i> 21st October, 2023 </a>
+                            <a href="#"> <i class="fas fa-user"></i> Trang Chủ </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide">
+                    <div class="image">
+                        <img src="/HomePage_img/blogs/blog5.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h3>Hãy Đến với TLOShop </h3>
+                        <p>Hân Hạnh Được Phục Vụ Quý Khách Hàng</p>
+                        <a href="#" class="btn">Đọc Thêm</a>
+                        <div class="icons">
+                            <a href="#"> <i class="fas fa-calendar"></i> 21st October, 2023 </a>
+                            <a href="#"> <i class="fas fa-user"></i> Trang Chủ </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section> 
+    <!-- footer section starts  -->
+
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>Thông Tin Về Chúng Tôi</h3>
+                <img src="/HomePage_img/blogs/footer.jpg" alt="" style="height: 300px;">
+            </div>
+
+            <div class="box">
+                <h3>Danh Mục</h3>
+                <a href="#"> <i class="fas fa-arrow-right"></i> Đồ Nam </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> Nữ </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> Trẻ Em </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> Sản Phẩm Bán Chạy </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> Sản Phẩm Mới</a>
+            </div>
+
+            <div class="box">
+                <h3>Truy Cập</h3>
+                <a href="#"> <i class="fas fa-arrow-right"></i>Trang Chủ</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>Sản Phẩm </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>Review</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>Liên Hệ</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>Blogs</a>
+            </div>
+
+            <div class="box">
+                <h3>Truy Cập Nhanh</h3>
+                <a href="#"> <i class="fas fa-arrow-right"></i>Đơn Hàng Của Bạn</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>Tài Khoản Của Bạn</a>
+                <a href="#"> <i class="fas fa-arrow-right"></i>Bán Ngay Bây Giờ</a>
+            </div>
+
+        </div>
+        <div class="share">
+            <a href="https://www.facebook.com/NguyenLamThanhLong" class="fab fa-facebook-f"></a>
+            <a href="https://www.tiktok.com/@longndp_" class="fab fa-twitter"></a>
+            <a href="https://github.com/thanhlongqax" class="fab fa-pinterest"></a>
+            <a href="https://www.linkedin.com/in/nguyenlamthanhlong" class="fab fa-linkedin"></a>
+            <a href="https://www.instagram.com/longndp" class="fab fa-instagram"></a>
+        </div>
+    </section>
+
+    <!-- footer section ends -->
+
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <!-- custom js file link -->
+    <script th:src="@{/HomePage.js}"></script>
+
+</body>
+
+</html>
