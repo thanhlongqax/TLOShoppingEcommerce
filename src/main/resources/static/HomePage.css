@@ -244,7 +244,51 @@ td {
 .cartButtonContainer button:hover {
   background-color: #f68c8c; /* Màu nền khi di chuột qua nút */
 }
+/* _____________________________________filter____________________________________ */
+/* Styling for the Product Filter section */
+.filter_list{
+  display: flex;
+  max-width: 100%;
+  margin-right: 0;
+  margin-left:0 ;
+}
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
 
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+select {
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  display: inline-block;
+  background: #f8f8f8;
+}
+
+/* Styling for the Filter button */
+.filter_buttons_list {
+  max-width: 100%;
+  background-color: #eb4d4b;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.filter_list_lists:hover {
+  background-color: #cba3a3;
+}
+/* _____________________________________end filter____________________________________ */
+
+/* _____________________________________end filter____________________________________ */
 /* _________________________________________________________________________ */
 .home {
   padding: 0;
@@ -751,12 +795,11 @@ td {
 }
 
 .contact .icons-container {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (minmax(25rem, 1fr))[auto-fit];
   grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   gap: 1.5rem;
 }
+
 
 
 
@@ -937,10 +980,8 @@ td {
 }
 
 .footer .box-container {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns:(minmax(25rem, 1fr))[auto-fit];
-      grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   gap: 1.5rem;
 }
 

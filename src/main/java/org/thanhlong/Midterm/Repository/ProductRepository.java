@@ -5,9 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.thanhlong.Midterm.Models.Product;
-
 import java.util.List;
-
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p.id, p.name, p.brand.name, p.color.name, p.price, p.description, p.picture FROM Product p " +
@@ -22,9 +20,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
                                          @Param("name") String name,
                                          @Param("brand") String brand,
                                          @Param("color") String color,
-                                         @Param("minPrice") Integer minPrice,
-                                         @Param("maxPrice") Integer maxPrice);
-
+                                         @Param("minPrice") Long minPrice,
+                                         @Param("maxPrice") Long maxPrice);
 
     @Query("SELECT p FROM Product p JOIN p.category c WHERE c.id = :categoryId")
     List<Product> findAllByCategoryId(@Param("categoryId") Long categoryId);

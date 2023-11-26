@@ -127,41 +127,9 @@ var swiper = new Swiper(".blogs-slider", {
 });
 
 //_____________________________________________________________________________________________
-// Lấy tham chiếu đến phần tử chứa sản phẩm
-const productContainer = document.getElementById("product-container");
-// Simulate JSON data (có thể thay thế bằng việc tải dữ liệu từ tệp JSON)
-// const data = [
-//     {
-//         "id " : 1,
-//         "name": "Sản phẩm 1",
-//       "brand" : "Levins",
-//       "color" : "pink",
-//         "price": 20,
-//         "image": "image/product_img1.jpg",
-//         "description": "Mô tả sản phẩm 1"
-//     },
-//     {
-//         "id " : 2,
-//         "name": "Sản phẩm 2",
-//       "brand" : "Levins",
-//       "color" : "pink",
-//         "price": 25,
-//         "image": "image/product_img2.jpg",
-//         "description": "Mô tả sản phẩm 2"
-//     },
-//     {
-//       "id " : 3,
-//       "name": "Sản phẩm 3",
-//       "brand" : "Levins",
-//       "color" : "pink",
-//       "price": 25,
-//       "image": "image/product_img2.jpg",
-//       "description": "Mô tả sản phẩm 2"
-//   }
-//     // Thêm dữ liệu sản phẩm khác ở đây
-// ];
 // Sử dụng Fetch API để gửi yêu cầu GET đến API
 var jsonData = {};
+const productContainer = document.getElementById("product-container");
 fetch('http://localhost:8080/api/products')
     .then(response => response.json())
     .then(data => {
@@ -173,12 +141,10 @@ fetch('http://localhost:8080/api/products')
         productDiv.innerHTML = `
         <div class="icons">
             <a onclick="addCart(this, ${product.id})" class="fas fa-shopping-cart"></a>
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-search"></a>
-            <a href="#" class="fas fa-eye"></a>
+            <a onclick="viewProductDetail(${product.id})" class="fas fa-eye"></a>
         </div>
         <div class="image">
-            <img th:src="${product.image}" alt="">
+            <img src="/api/images/${product.picture}" alt="">
         </div>
         <div class="content">
             <h3>${product.name}</h3>
@@ -188,13 +154,25 @@ fetch('http://localhost:8080/api/products')
             <p>${product.description}</p>
         </div>
     `;
-
         // Đưa sản phẩm vào vùng chứa
         productContainer.appendChild(productDiv);
       });
-      console.log(data);
     })
     .catch(error => console.error('Error:', error));
+
+// ______________________________________________Chức Năng Xem Chi tiet San Pham____________________________________________________
+function viewProductDetail(id) {
+  fetch(`http://localhost:8080/api/products/${id}`)
+      .then(response => response.json())
+      .then(productDetails => {
+        // Xử lý thông tin chi tiết sản phẩm nhận được từ API
+        // Chuyển hướng người dùng đến trang chi tiết sản phẩm hoặc thực hiện xử lý khác
+        window.location.href = `/Detail?id=${id}`;
+      })
+      .catch(error => console.error('Error:', error));
+}
+// ______________________________________________End___________________________________________________
+
 // ______________________________________________Chức Năng Giỏ Hàng____________________________________________________
 
 document.getElementById("showCart").style.display = "none";
@@ -202,7 +180,7 @@ document.getElementById("showCart").style.display = "none";
 let gioHang = [];
 function addCart(product, productId) {
   const productDiv = product.closest(".box");
-  const hinhSp = productDiv.querySelector(".image img").src;
+  const hinhSp = (productDiv.querySelector(".image img").src + "").split("/").pop();
   const tenSp = productDiv.querySelector(".content h3").innerText;
   const giaSp = productDiv.querySelector(".content .amount").innerText;
   const chiTietSp = productDiv.querySelector(".content p").innerText;
@@ -214,7 +192,7 @@ function addCart(product, productId) {
     name: tenSp,
     price: parseInt(giaSp, 10),
     detailProduct : chiTietSp,
-    quality :1,
+    quantity :1,
     brand: brandSp,
     color: colorSp,
   };
@@ -224,16 +202,15 @@ function addCart(product, productId) {
   const existingProductIndex = gioHang.findIndex((item) => item.id === productId);
 
   if (existingProductIndex !== -1) {
-      gioHang[existingProductIndex].quality++;
+      gioHang[existingProductIndex].quantity++;
   } else {
     gioHang = [...gioHang, Sp];
   }
-
   // Save the updated cart back to sessionStorage
   sessionStorage.setItem("gioHang", JSON.stringify(gioHang));
-  showMyCart();
+  showCart()
 }
-
+showMyCart();
 function showMyCart() {
   gioHang = JSON.parse(sessionStorage.getItem('gioHang'));
   let ttgh = "";
@@ -253,12 +230,12 @@ function showMyCart() {
         '</td>' +
         '<td>' +
         '<div class="box">' +
-        '<img th:src="' + item.picture + ' " style="width: 100px; height: 100px;">' +
+        '<img src="/api/images/' + item.picture + ' "  style="width: 100px; height: 100px;">' +
         '<p>' + item.name + '</p>' +
         '</div>' +
         '</td>' +
-        '<td> ' + item.quality+' </td>' +
-        '<td>' + item.price * item.quality + ' .000 VND</td>' +
+        '<td> ' + item.quantity+' </td>' +
+        '<td>' + item.price * item.quantity + ' .000 VND</td>' +
         '<td><a href="#" class="fas fa-trash" onclick="deleteCart(' + i + ')"></a></td>' +
         '</tr>';
     });
@@ -294,26 +271,134 @@ function deleteCart(index) {
     showMyCart();
   }
 }
-function saveCartToDatabase() {
-  const cartItems = JSON.parse(sessionStorage.getItem('gioHang'));
-
-  // Gửi yêu cầu POST đến API để lưu giỏ hàng vào CSDL
-  fetch('/api/cart/save', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(cartItems),
-  })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-        // Xóa giỏ hàng sau khi đã lưu vào CSDL nếu cần
-        sessionStorage.removeItem('gioHang');
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-}
-
 // ___________________________________________________________________________________
+//_______________loc san pham__________________________________________________
+function filterProducts() {
+  const productName = document.getElementById('productName').value;
+  var selectBoxColor = document.getElementById("colorDropdown");
+  var selectedOptionColor = selectBoxColor.options[selectBoxColor.selectedIndex];
+  var color = selectedOptionColor.text;
+
+  var selectBoxCategory = document.getElementById("categoryDropdown");
+  var selectedOptionCategory = selectBoxCategory.options[selectBoxCategory.selectedIndex];
+  var category = selectedOptionCategory.text;
+
+  var selectBoxBrand = document.getElementById("brandDropdown");
+  var selectedOptionBrand = selectBoxBrand.options[selectBoxBrand.selectedIndex];
+  var brand = selectedOptionBrand.text;
+
+  const minPrice = document.getElementById('minPrice').value;
+  const maxPrice = document.getElementById('maxPrice').value;
+  const queryParams = new URLSearchParams();
+
+  if (productName) {
+    queryParams.append('productName', productName);
+  }
+
+  if (color) {
+    queryParams.append('color', color);
+  }
+
+  if (category) {
+    queryParams.append('category', category);
+  }
+
+  if (brand) {
+    queryParams.append('brand', brand);
+  }
+
+  if (minPrice) {
+    queryParams.append('minPrice', minPrice);
+  }
+
+  if (maxPrice) {
+    queryParams.append('maxPrice', maxPrice);
+  }
+
+  fetch(`http://localhost:8080/api/products/filter?${queryParams}`)
+      .then(response => response.json())
+      .then(filteredProducts => {
+        // Process or display the filtered products as needed
+        productContainer.innerHTML = ""
+        jsonData = filteredProducts
+        filteredProducts.forEach(product => { // Lặp qua từng sản phẩm trong mảng JSON và tạo HTML cho từng sản phẩm
+          const productDiv = document.createElement("div");
+          productDiv.className = "box"; // Đặt lớp CSS
+          // Tạo nội dung sản phẩm
+          productDiv.innerHTML = `
+        <div class="icons">
+            <a onclick="addCart(this, ${product.id})" class="fas fa-shopping-cart"></a>
+            <a href="#" class="fas fa-heart"></a>
+            <a href="#" class="fas fa-search"></a>
+            <a href="#" class="fas fa-eye"></a>
+        </div>
+        <div class="image">
+            <img src="/api/images/${product.picture}" alt="">
+        </div>
+        <div class="content">
+            <h3>${product.name}</h3>
+            <div class="price">
+                <div class="amount">${product.price} .000 VND</div>
+            </div>
+            <p>${product.description}</p>
+        </div>
+    `;
+          productContainer.appendChild(productDiv)
+
+        });
+      }).catch(error => console.error('Error:', error));
+}
+//_________________________________________________________________________
+
+
+//_________________api fetch categories___________________________________
+const categoryDropdown = document.getElementById("categoryDropdown");
+fetch('http://localhost:8080/api/categories')
+    .then(response => response.json())
+    .then(categories => {
+      categories.forEach(category => {
+        const option = document.createElement("option");
+        option.value = category.id;
+        option.text = category.name;
+        categoryDropdown.appendChild(option);
+      });
+    })
+    .catch(error => console.error('Error fetching categories:', error));
+
+//____________________________________________________________________
+
+//_________________api fetch brand___________________________________
+
+const brandDropdown = document.getElementById("brandDropdown");
+
+fetch('http://localhost:8080/api/brands')
+    .then(response => response.json())
+    .then(brands => {
+      brands.forEach(brand => {
+        const option = document.createElement("option");
+        option.value = brand.id;
+        option.text = brand.name;
+        brandDropdown.appendChild(option);
+      });
+    })
+    .catch(error => console.error('Error fetching brands:', error));
+
+
+//____________________________________________________________________
+
+//_________________api fetch color___________________________________
+const colorDropdown = document.getElementById("colorDropdown");
+
+fetch('http://localhost:8080/api/colors')
+    .then(response => response.json())
+    .then(colors => {
+      colors.forEach(color => {
+        const option = document.createElement("option");
+        option.value = color.id;
+        option.text = color.name;
+        colorDropdown.appendChild(option);
+      });
+    })
+    .catch(error => console.error('Error fetching colors:', error));
+
+//____________________________________________________________________

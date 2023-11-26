@@ -1,14 +1,13 @@
 package org.thanhlong.Midterm.DTO;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Data
-//@Setter
-//@Getter
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class CategoryDTO {
     private Long id;
-
     private String name;
 }

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TLO Shop</title>
+  <link rel="stylesheet" th:href="@{Login.css}" />
+
+</head>
+
+<body>
+<main>
+  <div class="box">
+    <div th:if="${param.error}">
+      <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+    </div>
+
+    <div th:if="${param.logout}">
+      <p class="text-warning">You have been logged out.</p>
+    </div>
+
+
+    <!-- Form Đăng Nhập _________________________________________________________________________________ -->
+    <div class="inner-box">
+      <div class="forms-wrap">
+        <form th:action="@{/PerformLogin}" autocomplete="off" class="sign-in-form" method="post">
+          <div class="logo">
+            <h4>TLOShop</h4>
+          </div>
+          <div class="heading">
+            <h2>Chào Mừng TLOShop</h2>
+            <h6>Đăng Kí Tài Khoản</h6>
+            <a th:href="@{/Register}">
+              <button type="button" class="toggle" >
+                <h6>Đăng Ký</h6>
+              </button>
+            </a>
+          </div>
+
+          <div class="actual-form">
+            <div class="input-wrap">
+              <input  type="text" name="username" minlength="4" class="input-field" autocomplete="off" required placeholder="Email" />
+            </div>
+
+            <div class="input-wrap">
+              <input  type="password" name="password" minlength="4" class="input-field" autocomplete="off" required placeholder="Password"/>
+            </div>
+            <input type="checkbox" name="same" checked="checked" value="Remember me">Remember me
+            <br>
+            <br>
+            <input type="submit" value="Đăng Nhập" class="sign-btn" />
+            <p class="text">
+              <a href="#">Quên Mật Khẩu</a>
+            </p>
+          </div>
+        </form>
+        <!-- _________________________________________________________________________________________________________ -->
+      </div>
+      <div class="carousel">
+        <div class="images-wrapper">
+          <img th:src="@{/Login_SiginUp_img/Login_SignUp.png}" class="image img-1 show" alt="" />
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
+
+<script th:src="@{/Login_SignUp.js}"></script>
+</body>
+
+</html>

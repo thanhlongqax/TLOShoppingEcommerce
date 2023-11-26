@@ -1,6 +1,5 @@
 package org.thanhlong.Midterm.Models;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,13 +7,13 @@ import lombok.NoArgsConstructor;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table( name = "users")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +25,9 @@ public class User implements Serializable {
 
     @Column(nullable = false, unique = true)
     @NotEmpty
-    @Email(message = "{error.invalid_email}")
+    //@Email(message = "{error.invalid_email}")
     private String email;
-
+    private String userName;
     private String phoneNumber;
     @Column(nullable = false, unique = true)
     @NotEmpty
@@ -41,24 +40,8 @@ public class User implements Serializable {
     )
     private List<Role> roles;
 
-    //    @JsonBackReference
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Cart> carts;
-
     @OneToMany(mappedBy = "userOrder", cascade = CascadeType.ALL)
     private List<Order> orders;
-
-    //custom lai constructor
-    public User(){}
-
-    public User(User user) {
-        this.name = user.getName();
-        this.address = user.getAddress();
-        this.email = user.getEmail();
-        this.password = user.getPassword();
-        this.roles = user.getRoles();
-    }
-
 
     @Override
     public String toString() {

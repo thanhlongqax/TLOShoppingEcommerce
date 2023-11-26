@@ -17,10 +17,10 @@ public interface ProductService {
 
 	boolean removeProductById(Long id);
 
-	Product addOrUpdateProduct(Product product);
+	void addOrUpdateProduct(Product product);
 
 	List<ProductDTO> getAllProduct();
 
-	List<Product> searchByManyCondition(String category, String name,String brand,int minPrice,int maxPrice,String color);
+	List<Product> searchByManyCondition(String category, String name,String brand,long minPrice,long maxPrice,String color);
 
 }

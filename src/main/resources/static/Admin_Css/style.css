@@ -1,0 +1,104 @@
+h2 {
+    color: #ff0000;
+    text-align: center;
+    margin-bottom: 20px;
+}
+h2 b {
+    font-weight: normal;
+    color: #ff7171;
+}
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+.container-xl {
+    margin-top: 50px;
+}
+
+.table-wrapper {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 41px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+
+.modal-footer input {
+    margin-right: 10px;
+}
+.btn:hover {
+    opacity: 0.8;
+}
+@media (max-width: 768px) {
+    .container-xl {
+        margin-top: 20px;
+    }
+}
+.table-title h2 {
+    color: #ff0000;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.table-title b {
+    font-weight: normal;
+    color: #ff7171;
+}
+
+/* Css đoạn table_____________________________________________________________________________ */
+.table {
+    margin-top: 20px;
+    border-radius: 41px;
+    overflow: hidden;
+}
+
+.table th, .table td {
+    padding: 12px;
+    border-radius: 41px;
+}
+
+/* Bootstrap table styles */
+.table thead th {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+
+.btn {
+    margin-right: 5px;
+    border-radius: 20px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+.btn a {
+    color: inherit;
+    text-decoration: none;
+}
+.btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/* _____________________________________________________End__________________________________ */

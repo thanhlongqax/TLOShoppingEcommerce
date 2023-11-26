@@ -10,6 +10,7 @@ import org.thanhlong.Midterm.Models.Product;
 import org.thanhlong.Midterm.Repository.ProductRepository;
 import org.thanhlong.Midterm.Service.ProductService;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
     ProductRepository productRepository;
 
     @Override
-    public List<Product> searchByManyCondition(String category, String name, String brand, int minPrice, int maxPrice, String color) {
+    public List<Product> searchByManyCondition(String category, String name, String brand, long minPrice, long maxPrice, String color) {
         List<Object[]> temp = productRepository.searchByManyCondition(category, name, brand, color, minPrice, maxPrice);
         List<Product> products = new ArrayList<>();
 
@@ -28,10 +29,16 @@ public class ProductServiceImpl implements ProductService {
             Product product = new Product();
             product.setId((Long) obj[0]);          // id
             product.setName((String) obj[1]);      // name
-            product.setBrand((Brand) obj[2]);      // brand
-            product.setColor((Color) obj[3]);      // color
-            product.setPrice((int) obj[4]);        // price
+            Brand searchBrand = new Brand();
+            searchBrand.setName((String)obj[2]);
+            product.setBrand(searchBrand); // brand
+            Color searchColor = new Color();
+            searchColor.setName((String) obj[3]);
+            product.setColor(searchColor);      // color
+            product.setPrice((long) obj[4]);
+            product.setPicture((String) obj[6]);// price
             products.add(product);
+
         }
         return products;
     }
@@ -39,29 +46,49 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-	public List<ProductDTO> getAllProduct() {
+    public List<ProductDTO> getAllProduct() {
         List<Product> products = productRepository.findAll();
         List<ProductDTO> productDTOS = new ArrayList<>();
+
         products.forEach(product -> {
             ProductDTO dto = new ProductDTO();
             dto.setPicture(product.getPicture());
             dto.setId(product.getId());
             dto.setName(product.getName());
             dto.setDescription(product.getDescription());
-            dto.setColor(product.getColor().getName());
+
+            // Null checks for associated entities
+            if (product.getColor() != null) {
+                dto.setColor(product.getColor().getName());
+            } else {
+                dto.setColor("N/A");
+            }
+
             dto.setPrice(product.getPrice());
-            //dto.setCategory(product.getCategory().getName());
-            dto.setBrand(product.getBrand().getName());
+
+            if (product.getCategory() != null) {
+                dto.setCategory(product.getCategory().getName());
+            } else {
+                dto.setCategory("N/A");
+            }
+
+            if (product.getBrand() != null) {
+                dto.setBrand(product.getBrand().getName());
+            } else {
+                dto.setBrand("N/A");
+            }
 
             productDTOS.add(dto);
         });
+
         return productDTOS;
-    }//findAll
+    }
+
 
     @Override
-	public Product addOrUpdateProduct(Product product) {
-        return productRepository.save(product);
-    }//add or update (tuy vao pri-key)
+	public void addOrUpdateProduct(Product product) {
+        productRepository.save(product);
+    }
 
     @Override
     public boolean removeProductById(Long id) {

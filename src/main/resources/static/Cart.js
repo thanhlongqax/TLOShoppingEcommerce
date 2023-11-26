@@ -1,35 +1,9 @@
-
 // Lấy tham chiếu đến phần tử chứa sản phẩm
 const productContainer = document.getElementById("product-container");
-
-// Simulate JSON data (có thể thay thế bằng việc tải dữ liệu từ tệp JSON)
-const jsonData = [
-    {
-        "name": "Sản phẩm 1",
-        "price": 20,
-        "image": "image/product_img1.jpg",
-        "description": "Mô tả sản phẩm 1"
-    },
-    {
-        "name": "Sản phẩm 2",
-        "price": 25,
-        "image": "image/product_img2.jpg",
-        "description": "Mô tả sản phẩm 2"
-    },
-    {
-      "name": "Sản phẩm 3",
-      "price": 25,
-      "image": "image/product_img2.jpg",
-      "description": "Mô tả sản phẩm 2"
-  }
-    // Thêm dữ liệu sản phẩm khác ở đây
-];
 // Lấy dữ liệu từ sessionStorage
 const gioHang = JSON.parse(sessionStorage.getItem('gioHang'));
-
 // Lấy thẻ tbody trong table để thêm các sản phẩm vào
 const tbody = document.querySelector('.site-blocks-table tbody');
-
 // Kiểm tra xem gioHang có dữ liệu hay không
 if (gioHang && gioHang.length > 0) {
   // Duyệt qua từng sản phẩm trong gioHang và thêm vào tbody
@@ -40,7 +14,7 @@ if (gioHang && gioHang.length > 0) {
         <h2 class="h5 text-black">${item.name}</h2>
       </td>
       <td class="product-thumbnail">
-        <img src="${item.picture}" alt="Image" class="img-fluid">
+        <img src="/api/images/${item.picture}" alt="Image" class="img-fluid">
       </td>
       <td>${item.price}.000 VND</td>
       <td>
@@ -48,13 +22,13 @@ if (gioHang && gioHang.length > 0) {
           <div class="input-group-prepend">
             <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
           </div>
-          <input type="text" class="form-control text-center" value="${item.quality}" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+          <input type="text" class="form-control text-center" value="${item.quantity}" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
           <div class="input-group-append">
             <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
           </div>
         </div>
       </td>
-      <td>${item.price * item.quality}.000 VND</td>
+      <td>${item.price * item.quantity}.000 VND</td>
       <td><a href="#" class="btn btn-primary btn-sm" onclick="removeItem(${index})">X</a></td>
     `;
     // Thêm hàng vào tbody
@@ -95,11 +69,11 @@ btnPlusList.forEach((btnPlus, index) => {
 function updateQuantity(index, change) {
     // Đảm bảo sản phẩm tồn tại trong giỏ hàng
     if (gioHang[index]) {
-        gioHang[index].quality += change;
+        gioHang[index].quantity += change;
 
         // Đảm bảo số lượng không dưới 1
-        if (gioHang[index].quality < 1) {
-            gioHang[index].quality = 1;
+        if (gioHang[index].quantity < 1) {
+            gioHang[index].quantity = 1;
         }
 
         // Lưu lại giỏ hàng vào sessionStorage
@@ -125,8 +99,8 @@ function updateCartSummary() {
     let totalItems = 0;
 
     gioHang.forEach(item => {
-        subtotal += item.price * item.quality;
-        totalItems += item.quality;
+        subtotal += item.price * item.quantity;
+        totalItems += item.quantity;
     });
 
     // Tạo HTML để cập nhật trạng thái giỏ hàng
@@ -135,12 +109,12 @@ function updateCartSummary() {
       <div class="col-md-7">
         <div class="row">
           <div class="col-md-12 text-right border-bottom mb-5">
-            <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+            <h3 class="text-black h4 text-uppercase">Giỏ Hàng</h3>
           </div>
         </div>
         <div class="row mb-3">
           <div class="col-md-6">
-            <span class="text-black">Total Items</span>
+            <span class="text-black">Tổng Số Lượng</span>
           </div>
           <div class="col-md-6 text-right">
             <strong class="text-black">${totalItems}</strong>
@@ -148,7 +122,7 @@ function updateCartSummary() {
         </div>
         <div class="row mb-5">
           <div class="col-md-6">
-            <span class="text-black">ToTal</span>
+            <span class="text-black">Tổng Cộng</span>
           </div>
           <div class="col-md-6 text-right">
             <strong class="text-black"> ${subtotal}.000 VND</strong>
@@ -156,7 +130,7 @@ function updateCartSummary() {
         </div>
         <div class="row">
           <div class="col-md-12">
-            <button class="btn btn-primary btn-lg py-3 btn-block" onclick="saveCartToDatabase()">Proceed To Checkout</button>
+            <button class="btn btn-primary btn-lg py-3 btn-block" onclick="saveCartToDatabase()">Tiến Hành Thanh Toán</button>
           </div>
         </div>
       </div>
@@ -166,28 +140,27 @@ function updateCartSummary() {
     // Cập nhật nội dung của cartSummary
     cartSummary.innerHTML = htmlContent;
 }
-
 // Gọi hàm cập nhật khi trang tải
 updateCartSummary();
 function saveCartToDatabase() {
   //Gửi yêu cầu POST đến API để lưu giỏ hàng vào CSDL
+    const gioHangData = JSON.parse(sessionStorage.getItem('gioHang'));
+    if (!gioHangData) {
+        alert("Giỏ hàng trống")
+        return;
+    }
   fetch('/api/cart/save', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: sessionStorage.getItem('gioHang'),
+    body: JSON.stringify(gioHangData),
   })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-        // Xóa giỏ hàng sau khi đã lưu vào CSDL nếu cần
-        sessionStorage.removeItem('gioHang');
-      })
+      .then(response => response.text())
       .catch((error) => {
         console.error('Error:', error);
       });
+  sessionStorage.clear();
+  location.reload();
 }
-
-
 // ___________________________________________________________________________________

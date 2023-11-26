@@ -2,9 +2,8 @@ package org.thanhlong.Midterm.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import java.io.Serializable;
 
 @Entity
@@ -12,6 +11,8 @@ import java.io.Serializable;
 @Table(name = "products")
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
+@Getter
 public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,12 +31,19 @@ public class Product implements Serializable {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    private int price;
+    private long price;
     @Column(name = "picture")
     private String picture;
+    @Column(length = 300)
     private String description;
 
-
+    public String getBrandName() {
+        if (brand != null) {
+            return brand.getName();
+        } else {
+            return null; // or some default value if needed
+        }
+    }
     @Override
     public String toString(){
         return "id: "+id+", name: "+name+", price: "+price+", image: "+picture;

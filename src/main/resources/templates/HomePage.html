@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -85,8 +84,6 @@
 
     <!-- banner section ends -->
 
-    <!-- products section starts  -->
-
     <section class="products" id="products">
 
         <h1 class="heading"> Sản Phẩm<span> Độc Quyền</span> </h1>
@@ -96,6 +93,29 @@
             <div class="buttons" data-filter="arrivals">Sản Phẩm Mới</div>
             <div class="buttons" data-filter="special">Khuyến Mãi Đặc Biệt</div>
             <div class="buttons" data-filter="seller">Bán Chạy Nhất</div>
+        </div>
+        <h1 class="heading"> Lọc<span> Sản Phẩm</span> </h1>
+        <!-- products section starts  -->
+        <div class="filter_list">
+
+            <label for="productName">Product Name:</label>
+            <input type="text" id="productName">
+
+            <label for="colorDropdown">Color:</label>
+            <select id="colorDropdown"></select>
+
+            <label for="categoryDropdown">Category:</label>
+            <select id="categoryDropdown"></select>
+
+            <label for="brandDropdown">Brand:</label>
+            <select id="brandDropdown"></select>
+
+            <label for="minPrice">Giá Tối Thiểu:</label>
+            <input type="text" id="minPrice">
+
+            <label for="maxPrice">Giá tối đa:</label>
+            <input type="text" id="maxPrice">
+            <button class = "filter_buttons_list" onclick="filterProducts()">Filter</button>
         </div>
 
         <div class="box-container" id="product-container">

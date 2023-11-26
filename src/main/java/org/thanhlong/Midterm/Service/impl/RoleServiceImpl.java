@@ -1,6 +1,5 @@
 package org.thanhlong.Midterm.Service.impl;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.thanhlong.Midterm.Models.Role;
@@ -14,12 +13,10 @@ import java.util.Optional;
 public class RoleServiceImpl implements RoleService {
     @Autowired
     RoleRepository roleRepository;
-
-    public List<Role> getAllRole() {
+    public List<Role> getAllRole(){
         return roleRepository.findAll();
     }
-
-    public Optional<Role> findRoleById(int id){
+    public Optional<Role> findRoleById(long id){
         return roleRepository.findById(id);
     }
 

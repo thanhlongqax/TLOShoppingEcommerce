@@ -1,0 +1,53 @@
+
+.gradient-custom {
+    background: linear-gradient(45deg, #ff6b6b, #5d2e8c);
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+.card-header {
+    background-color: #a8729a;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card-header h5 {
+    color: #fff;
+}
+
+.card-body {
+    background-color: #fff;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.card-footer {
+    background-color: #a8729a;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.card-footer h5 {
+    color: #fff;
+}
+
+/* Additional Styles for Text */
+.text-muted {
+    color: #555 !important;
+}
+
+/* Additional Styles for Padding and Margin */
+.pt-2 {
+    padding-top: 0.5rem !important;
+}
+
+.mb-5 {
+    margin-bottom: 3rem !important;
+}

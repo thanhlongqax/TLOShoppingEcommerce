@@ -2,6 +2,7 @@ package org.thanhlong.Midterm.Service;
 
 
 import org.springframework.stereotype.Service;
+import org.thanhlong.Midterm.DTO.CartItemDTO;
 import org.thanhlong.Midterm.Models.CartItem;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface CartItemService {
 
     boolean deleteCartItemById(Long id);
 
-    void saveOrUpdateCartItem(List<CartItem> cartItems);
+    void saveOrUpdateCartItem(List<CartItemDTO> cartItems);
 
     List<CartItem> getAllCartItems();
 

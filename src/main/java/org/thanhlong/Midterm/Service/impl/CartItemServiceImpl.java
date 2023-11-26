@@ -2,10 +2,14 @@ package org.thanhlong.Midterm.Service.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.thanhlong.Midterm.DTO.CartItemDTO;
 import org.thanhlong.Midterm.Models.CartItem;
 import org.thanhlong.Midterm.Models.Product;
+import org.thanhlong.Midterm.Models.User;
 import org.thanhlong.Midterm.Repository.CartItemRepository;
+import org.thanhlong.Midterm.Repository.UserRepository;
 import org.thanhlong.Midterm.Service.CartItemService;
 
 import java.util.ArrayList;
@@ -18,6 +22,14 @@ public class CartItemServiceImpl implements CartItemService {
     @Autowired
     CartItemRepository cartItemRepository;
 
+    @Autowired
+    ProductServiceImpl productService;
+    @Autowired
+    CartServiceImpl cartService;
+    @Autowired
+    UserServiceImpl userService;
+    @Autowired
+    UserRepository userRepository;
     @Override
     public Optional<CartItem> getCartItemById(Long id) {
         return cartItemRepository.findById(id);
@@ -30,7 +42,7 @@ public class CartItemServiceImpl implements CartItemService {
         for (Object[] cartItemObject : cartItemObjects) {
             CartItem cartItem = new CartItem();
             cartItem.setId((Long) cartItemObject[0]);
-            //cartItem.setProduct((Product) cartItemObject[1]);
+            cartItem.setProduct((Product) cartItemObject[1]);
             cartItem.setQuantity((Integer) cartItemObject[2]);
             cartItems.add(cartItem);
         }
@@ -50,8 +62,15 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public void saveOrUpdateCartItem(List<CartItem> cartItems) {
-        // Assuming CartItemRepository has a method for saving or updating cart items
+    public void saveOrUpdateCartItem(List<CartItemDTO> cartItemDTO) {
+        List<CartItem> cartItems = new ArrayList<>();
+        cartItemDTO.forEach(item ->{
+            CartItem cartItem = new CartItem();
+            cartItem.setCart();
+            cartItem.setProduct(productService.getProductById(item.getId()).get());
+            cartItem.setQuantity(item.getQuantity());
+            cartItems.add(cartItem);
+        });
         cartItemRepository.saveAll(cartItems);
     }
 

@@ -3,6 +3,7 @@ package org.thanhlong.Midterm.Service;
 
 
 import org.springframework.stereotype.Service;
+import org.thanhlong.Midterm.DTO.CategoryDTO;
 import org.thanhlong.Midterm.Models.Category;
 
 import java.util.List;
@@ -11,14 +12,15 @@ import java.util.Optional;
 @Service
 public interface CategoryService {
 
-    public List<Category> getAllCategory();
+    List<CategoryDTO> getAllCategory();
+    void addCategory(Category category);
 
-    public void updateCategory(Category category);
+    void updateCategory(Category category);
 
-    public void removeCategoryById(Long id);
+    void removeCategoryById(Long id);
 
-    public Optional<Category> getCategoryById(Long id);
+    Optional<Category> getCategoryById(Long id);
 
-    public List<String> findCategoryByProductId(Long id);
+    List<String> findCategoryByProductId(Long id);
 
 }

@@ -16,7 +16,7 @@ public interface CartService {
 
     boolean deleteCartById(Long id);
 
-    Cart saveOrUpdateCart(Cart cart);
+    void saveOrUpdateCart(List<CartDTO> cartDTO);
 
     List<CartDTO> getAllCarts();
 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TLO Shop - Register</title>
+  <link rel="stylesheet" th:href="@{/Register.css}" />
+</head>
+<body>
+<main class="sign-up-mode">
+  <div class="box">
+    <div class="inner-box">
+      <div class="forms-wrap">
+        <!-- Đăng Kí  _____________________________________________________________ -->
+        <form th:action="@{/Register}"  method="post" th:object="${newUser}" autocomplete="off" class="sign-up-form">
+          <div class="logo">
+            <h4>TLOShop</h4>
+          </div>
+          <div class="heading">
+            <h2>Chào Mừng TLOShop</h2>
+            <h6>Nếu Bạn Có Tài Khoản </h6>
+            <a th:href="@{/Login}">
+              <button type="button" class="toggle" >
+              <h6>Đăng Nhập</h6>
+            </button>
+            </a>
+          </div>
+          <div class="actual-form">
+            <div class="input-wrap">
+              <input type="text" th:field="*{name}" minlength="4" class="input-field" autocomplete="off" required placeholder="Name"/>
+            </div>
+            <div class="input-wrap">
+              <input type="email" th:field="*{email}" class="input-field" autocomplete="off" required placeholder="Email"/>
+            </div>
+            <div class="input-wrap">
+              <input type="password" th:field="*{password}" minlength="4" class="input-field" autocomplete="off" required placeholder="Password"/>
+            </div>
+
+            <input type="submit" value="Đăng Kí" class="sign-btn" />
+
+            <p class="text">
+              Được Thực Hiện
+              <br>
+              52100820_Nguyễn Lâm Thành Long
+            </p>
+          </div>
+        </form>
+      </div>
+
+      <div class="carousel">
+        <div class="images-wrapper">
+          <img th:src="@{/Login_SiginUp_img/Login_SignUp.png}" class="image img-1 show" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+
+</html>

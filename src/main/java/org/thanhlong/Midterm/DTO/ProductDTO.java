@@ -1,8 +1,6 @@
 package org.thanhlong.Midterm.DTO;
 
 import lombok.*;
-
-import java.util.List;
 @Data
 @Setter
 @Getter
@@ -11,12 +9,12 @@ import java.util.List;
 public class ProductDTO {
     private Long id;
     private String name;
-    private int price;
+    private long price;
     private String description;
     private String picture;
     private String brand;
     private String color;
-    private String category; // Thêm một danh sách các ID của các danh mục liên quan
+    private String category;
 
 
 }

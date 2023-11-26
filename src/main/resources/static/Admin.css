@@ -36,3 +36,24 @@ a.link-body-emphasis:hover {
   background-color: red;
   color: var(--white-color);
 }
+/*nut them san pham ___________________________________*/
+.container {
+    text-align: center;
+}
+
+.add-product-btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: var(--red-color);
+    color: white;
+    padding: 15px 25px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-product-btn:hover {
+    background-color: #ff7171;
+}
+/*the end________________________________________ */

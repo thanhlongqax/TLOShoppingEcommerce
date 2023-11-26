@@ -6,10 +6,10 @@ import lombok.Data;
 public class CartItemDTO {
     private Long id;
     private String picture;
-    private String brand;
-    private String color;
     private String name;
     private int price;
-    private String description;
+    private String detailProduct;
     private int quantity;
+    private String brand;
+    private String color;
 }

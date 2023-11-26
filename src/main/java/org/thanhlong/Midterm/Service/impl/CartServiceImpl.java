@@ -1,9 +1,11 @@
 package org.thanhlong.Midterm.Service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.thanhlong.Midterm.DTO.CartDTO;
 import org.thanhlong.Midterm.Models.Cart;
+import org.thanhlong.Midterm.Models.User;
 import org.thanhlong.Midterm.Repository.CartRepository;
 import org.thanhlong.Midterm.Service.CartService;
 
@@ -15,6 +17,8 @@ import java.util.Optional;
 public class CartServiceImpl implements CartService {
     @Autowired
     CartRepository cartRepository;
+    @Autowired
+    UserServiceImpl userService;
 
     @Override
     public Optional<CartDTO> getCartDTOById(Long id) {
@@ -22,11 +26,9 @@ public class CartServiceImpl implements CartService {
             CartDTO cartDTO = new CartDTO();
             cartDTO.setId(cart.getId());
             cartDTO.setUserId(cart.getUser().getId());
-            cartDTO.setCartTotal(cart.getCart_total());
             return cartDTO;
         });
     }
-
     @Override
     public Optional<Cart> getCartById(Long id){
         return cartRepository.findById(id);
@@ -44,7 +46,23 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public Cart saveOrUpdateCart(Cart cart) {
+    public void saveOrUpdateCart(List<CartDTO> cartDTO) {
+        List<Cart> cart = new ArrayList<>();
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.getUserByUserName(userName).get();
+        cartDTO.forEach(item ->{
+            Cart cart1 = new Cart();
+            cart1.setUser(user);
+            cart.add(cart1);
+        });
+
+        cartRepository.saveAll(cart);
+    }
+    public Cart addCart(CartDTO cartDTO) {
+        Cart cart = new Cart();
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.getUserByUserName(userName).get();
+        cart.setUser(user);
         return cartRepository.save(cart);
     }
 
@@ -56,7 +74,6 @@ public class CartServiceImpl implements CartService {
             CartDTO cartDTO = new CartDTO();
             cartDTO.setId(cart.getId());
             cartDTO.setUserId(cart.getUser().getId());
-            cartDTO.setCartTotal(cart.getCart_total());
             cartDTOs.add(cartDTO);
         }
         return cartDTOs;
@@ -70,7 +87,6 @@ public class CartServiceImpl implements CartService {
             CartDTO cartDTO = new CartDTO();
             cartDTO.setId(cart.getId());
             cartDTO.setUserId(cart.getUser().getId());
-            cartDTO.setCartTotal(cart.getCart_total());
             cartDTOs.add(cartDTO);
         }
         return cartDTOs;
