@@ -21,6 +21,5 @@ public interface CategoryService {
 
     Optional<Category> getCategoryById(Long id);
 
-    List<String> findCategoryByProductId(Long id);
 
 }

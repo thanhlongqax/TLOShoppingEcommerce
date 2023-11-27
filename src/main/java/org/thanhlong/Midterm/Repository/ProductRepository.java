@@ -9,8 +9,7 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query("SELECT p.id, p.name, p.brand.name, p.color.name, p.price, p.description, p.picture FROM Product p " +
-            "WHERE p.id IN (SELECT pc.product.id FROM ProductCategory pc WHERE pc.category.id IN " +
-            "(SELECT c.id FROM Category c WHERE (:category IS NULL OR c.name LIKE :category))) " +
+            "WHERE p.id IN (SELECT c.id FROM Category c WHERE (:category IS NULL OR c.name LIKE :category)) " +
             "AND (:color IS NULL OR p.color.name LIKE :color) " +
             "AND (:brand IS NULL OR p.brand.name LIKE :brand) " +
             "AND (:name IS NULL OR p.name LIKE CONCAT('%', :name, '%')) " +

@@ -44,7 +44,7 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public Brand getBrandById(Long id) {
         // Lấy thông tin thương hiệu từ cơ sở dữ liệu theo ID
-        return brandRepository.findById(id).orElse(null);
+        return brandRepository.findById(id).get();
     }
     @Override
     public void addBrand(Brand brand){
