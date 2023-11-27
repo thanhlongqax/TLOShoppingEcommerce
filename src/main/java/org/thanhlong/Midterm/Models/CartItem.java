@@ -10,12 +10,12 @@ import java.io.Serializable;
 @Data
 @Setter
 @Getter
+@Table(name = "cartItems")
 public class CartItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //    @JsonManagedReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")
     private Cart cart;

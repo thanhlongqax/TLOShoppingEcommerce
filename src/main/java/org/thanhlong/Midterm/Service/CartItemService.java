@@ -16,7 +16,7 @@ public interface CartItemService {
 
     void saveOrUpdateCartItem(List<CartItemDTO> cartItems);
 
-    List<CartItem> getAllCartItems();
+//    List<CartItem> getAllCartItems();
 
     List<CartItem> getCartItemByCartId(Long id);
 }

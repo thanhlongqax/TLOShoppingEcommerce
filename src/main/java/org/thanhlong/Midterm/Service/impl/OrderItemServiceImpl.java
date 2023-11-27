@@ -45,18 +45,4 @@ public class OrderItemServiceImpl implements OrderItemService {
         return orderItemRepository.findAll();
     }
 
-    @Override
-    public List<OrderItem> getOrderItemByOrderId(Long orderId) {
-        List<Object[]> orderItemObjects = orderItemRepository.findByOrderId(orderId);
-        List<OrderItem> orderItems = new ArrayList<>();
-        for (Object[] orderItemObject : orderItemObjects) {
-            OrderItem orderItem = new OrderItem();
-            orderItem.setId((Long) orderItemObject[0]);
-            orderItem.setOrder((Order) orderItemObject[1]);
-            orderItem.setProduct((Product) orderItemObject[2]);
-            orderItem.setQuantity((Integer) orderItemObject[3]);
-            orderItems.add(orderItem);
-        }
-        return orderItems;
-    }
 }

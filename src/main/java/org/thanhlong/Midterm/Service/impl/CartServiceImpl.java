@@ -58,11 +58,7 @@ public class CartServiceImpl implements CartService {
 
         cartRepository.saveAll(cart);
     }
-    public Cart addCart(CartDTO cartDTO) {
-        Cart cart = new Cart();
-        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userService.getUserByUserName(userName).get();
-        cart.setUser(user);
+    public Cart addCart(Cart cart) {
         return cartRepository.save(cart);
     }
 

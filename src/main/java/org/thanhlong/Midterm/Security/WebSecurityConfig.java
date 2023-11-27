@@ -45,7 +45,7 @@ public class WebSecurityConfig {
                 .sessionManagement(configurer -> configurer.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers( "/Admin/**" , "/detailProduct/**" , "/editBrand/**", "/deleteBrand/**", "/updateProduct/**" ,"/editCategory/**","/deleteCategory/**" , "/editColor/**" , "/deleteColor/**").hasRole("ADMIN")
-                        .requestMatchers("/Cart").authenticated()
+                        .requestMatchers("/Cart" , "/orderPage").authenticated()
                         .anyRequest().permitAll()
                 )
                 .authenticationProvider(authenticationProvider())

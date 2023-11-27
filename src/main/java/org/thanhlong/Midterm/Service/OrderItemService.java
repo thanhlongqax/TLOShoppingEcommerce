@@ -17,5 +17,4 @@ public interface OrderItemService  {
 
     List<OrderItem> getAllOrderItems();
 
-    List<OrderItem> getOrderItemByOrderId(Long orderId);
 }

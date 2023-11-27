@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.thanhlong.Midterm.DTO.CartItemDTO;
+import org.thanhlong.Midterm.Models.Cart;
 import org.thanhlong.Midterm.Models.CartItem;
 import org.thanhlong.Midterm.Models.Product;
 import org.thanhlong.Midterm.Models.User;
@@ -64,9 +65,18 @@ public class CartItemServiceImpl implements CartItemService {
     @Override
     public void saveOrUpdateCartItem(List<CartItemDTO> cartItemDTO) {
         List<CartItem> cartItems = new ArrayList<>();
+
+        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userService.getUserByUserName(userName).get();
+
         cartItemDTO.forEach(item ->{
             CartItem cartItem = new CartItem();
-            cartItem.setCart();
+            Cart cart = new Cart();
+
+            cart.setUser(user);
+            cartService.addCart(cart);
+            cartItem.setCart(cart);
+
             cartItem.setProduct(productService.getProductById(item.getId()).get());
             cartItem.setQuantity(item.getQuantity());
             cartItems.add(cartItem);
@@ -74,8 +84,18 @@ public class CartItemServiceImpl implements CartItemService {
         cartItemRepository.saveAll(cartItems);
     }
 
-    @Override
-    public List<CartItem> getAllCartItems() {
-        return cartItemRepository.findAll();
-    }
+//    @Override
+//    public List<CartItemDTO> getAllCartItems() {
+//        List<CartItem> cartItems = cartItemRepository.findAll();
+//        List<CartItemDTO> cartItemDTOS = new ArrayList<>();
+//
+//
+//        cartItems.forEach(item ->{
+//            CartItemDTO cartItemDTO = new CartItemDTO();
+//            cartItemDTO.setId(item.getId());
+//            Product products = productService.getProductById(item.getId()).get()
+//            cartItemDTO.set
+//        });
+//
+//    }
 }

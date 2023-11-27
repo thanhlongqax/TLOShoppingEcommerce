@@ -142,6 +142,8 @@ function updateCartSummary() {
 }
 // Gọi hàm cập nhật khi trang tải
 updateCartSummary();
+
+// ________________________________saveCartToDatBase___________________________________________________
 function saveCartToDatabase() {
   //Gửi yêu cầu POST đến API để lưu giỏ hàng vào CSDL
     const gioHangData = JSON.parse(sessionStorage.getItem('gioHang'));
@@ -157,10 +159,18 @@ function saveCartToDatabase() {
     body: JSON.stringify(gioHangData),
   })
       .then(response => response.text())
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  sessionStorage.clear();
-  location.reload();
+      .then(data => {
+          sessionStorage.clear();
+          window.location.href = "/orderPage";
+
+      })
 }
+
 // ___________________________________________________________________________________
+// ___________________________________________________________________________________
+// fetch('http://localhost:8080/api/cartItems')
+//     .then(response => response.json())
+//     .then(data => {
+//         console.log(data); // Xử lý dữ liệu ở đây
+//     })
+//     .catch(error => console.error('Error:', error))
