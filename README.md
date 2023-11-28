@@ -144,73 +144,66 @@ The request method is the way we distinguish what kind of action our endpoint is
 
 
 ### Full CURL commands
-#### Product API
 
-| Method   | URL                                       | Description                              |
-| -------- | ----------------------------------------  | ---------------------------------------- |
-| `GET`    | `/api/product`                            | Retrieve all products.                   |
-| `POST`   | `/api/product/1`                          | Update data product by ID 1.             |
-| `POST`   | `/api/product`                            | Create a new product.                    |
-| `GET`    | `/api/product/1`                          | Retrieve order by ID 1.                  |             
-| `DELETE` | `/api/product/1`                          | Delete produc by ID 1.                   |
-| `GET`    | `/api/product?keyword=samsung`            | Search for "samsung" in list product.    |
-
-
-#### Order API
-
-| Method   | URL                                       | Description                              |
-| -------- | ----------------------------------------  | ---------------------------------------- |
-| `GET`    | `/api/order`                              | Retrieve all orders.                     |
-| `GET`    | `/api/order/1`                            | Retrieve order by ID 1.                  |             
-| `DELETE` | `/api/order/1`                            | Delete order by ID 1.                    |
-
-
-#### User API
-
-| Method   | URL                                       | Description                              |
-| -------- | ----------------------------------------  | ---------------------------------------- |
-| `GET`    | `/api/user`                               | Retrieve all users.                      |
-| `GET`    | `/api/user/1`                             | Retrieve data user by ID 1.              |
-| `GET`    | `/api/user/anhduc123`                     | Retrieve data user by username anhduc123.|
-
-
-#### Category API
-
-| Method   | URL                                       | Description                              |
-| -------- | ----------------------------------------  | ---------------------------------------- |
-| `GET`    | `/api/category`                           | Retrieve all categories.                 |
-| `GET`    | `/api/category/1`                         | Retrieve category  by ID 1.              |             
-
+### API
 #### Brand API
 
 | Method   | URL                                       | Description                              |
 | -------- | ----------------------------------------  | ---------------------------------------- |
-| `GET`    | `/api/brand`                              | Retrieve all brands.                     |
-| `GET`    | `/api/brand/1`                            | Retrieve brand by ID 1.                  |             
-
-#### Color API
-
-| Method   | URL                                       | Description                              |
-| -------- | ----------------------------------------  | ---------------------------------------- |
-| `GET`    | `/api/color`                              | Retrieve all colors.                     |
-| `GET`    | `/api/color/1`                            | Retrieve color by ID 1.                  |             
-
+| `GET`    | `/api/brands`                              | Retrieve all brands.                     |
 
 #### Cart API
 
-| Method   | URL                                       | Description                              |
-| -------- | ----------------------------------------  | ---------------------------------------- |
-| `GET`    | `/api/cart`                               | Retrieve all carts.                      |
-| `GET`    | `/api/cart/1`                             | Retrieve cart by ID 1.                   |     
+| Method | URL              | Description                |
+|--------|------------------|----------------------------|
+| `GET`  | `/api/carts`      | Retrieve all carts.        |
+| `POST` | `/api/cart/save` | Save data cart in database. |
 
+#### Category API
+
+| Method   | URL               | Description                              |
+| -------- |-------------------| ---------------------------------------- |
+| `GET`    | `/api/categories` | Retrieve all categories.                 |
+#### Color API
+
+| Method   | URL           | Description                              |
+| -------- |---------------| ---------------------------------------- |
+| `GET`    | `/api/colors` | Retrieve all colors.                     |
+
+#### Image API
+
+| Method   | URL            | Description                      |
+| -------- |----------------|----------------------------------|
+| `GET`    | `/api/images`  | Retrieve image by name of image. |
+
+#### Product API
+| Method   | URL                    | Description                                                                                |
+|----------|------------------------|--------------------------------------------------------------------------------------------|
+| `GET`    | `/api/products`        | Retrieve all products.                                                                     |
+| `GET`    | `/api/products/filter` | filter product by name ,category , color , brand , name , minimun price and maximum price. |
+| `GET`    | `/api/products/{id}`   | Retrieve  products  by id                                                                  ||
 
 > **Note**
 > I just listed the api used in the project. Because the project has security by [Spring security](https://docs.spring.io/spring-security/reference/index.html), when testing the API we have to turn it off and switch back to [RestController](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/RestController.html)
 
 ## Postman Snapshots:
-### Product API
-![image](https://user-images.githubusercontent.com/114124106/230732373-74dbedc7-cff2-4bf6-bab2-05b01c78660a.png)
-![image](https://user-images.githubusercontent.com/114124106/230733410-a09d0eb8-d060-49b4-a108-d6bb329ac290.png)
+#### Brand API
+![image](https://github.com/thanhlongqax/anhReadme/blob/main/api/brands.png?raw=true)
+#### Cart API
+![image](https://github.com/thanhlongqax/anhReadme/blob/main/api/carts.png?raw=true)
+
+#### Category API
+![image](https://github.com/thanhlongqax/anhReadme/blob/main/api/categories.png?raw=true)
+
+#### Color API
+![image](https://github.com/thanhlongqax/anhReadme/blob/main/api/colors.png?raw=true)
+
+#### Image API
+![image](https://github.com/thanhlongqax/anhReadme/blob/main/api/picture.png?raw=true)
+
+#### Product API
+![image](https://github.com/thanhlongqax/anhReadme/blob/main/api/productbyid.png?raw=true)
+![image](https://github.com/thanhlongqax/anhReadme/blob/main/api/products.png?raw=true)
 
 
 > **Note**

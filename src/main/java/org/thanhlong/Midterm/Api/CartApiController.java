@@ -64,12 +64,6 @@ public class CartApiController {
         orderService.addOrderByOrderDTO(orderDTO);
         return "";
     }
-
-//    @GetMapping("/cartItems")
-//    public List<CartItemDTO> getAllCartItems() {
-//        return cartItemService.getAllCartItems();
-//    }
-
     @GetMapping("/carts")
     public List<CartDTO> getAllCarts() {
         return cartService.getAllCarts();
