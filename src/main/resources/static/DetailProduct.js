@@ -13,9 +13,12 @@ function addCart(product) {
     const productId = document.getElementById('productId').innerText;
     const hinhSp = (document.getElementById('productImage').src+ "").split("/").pop();
     const tenSp = document.getElementById('productName').innerText;
-    const giaSp = document.getElementById('productPrice').innerText;
+    const  priceString = document.getElementById('productPrice').innerText
+    const index = priceString.indexOf('.');
+    const giaSp = priceString.substring(0, index);
     const chiTietSp = document.getElementById('productDescription').innerText;
     const quantity = document.getElementById('quantityInput').value;
+    console.log(quantity)
     const brandSp = document.getElementById('productBrand').innerText;
     const colorSp = document.getElementById('productColor').innerText;
     const Sp = {
@@ -24,7 +27,7 @@ function addCart(product) {
         name: tenSp,
         price: parseInt(giaSp, 10),
         detailProduct : chiTietSp,
-        quality :quantity,
+        quantity :parseInt(quantity),
         brand: brandSp,
         color: colorSp,
     };

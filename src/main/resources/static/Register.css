@@ -15,6 +15,23 @@ input {
 #box{
   z-index: 0;
 }
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap button {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.round-button {
+  border: none;
+  border-radius: 50%;
+  width: 18px;
+  height: 5px;
+  cursor: pointer;
+}
 main {
   width: 100%;
   min-height: 100vh;

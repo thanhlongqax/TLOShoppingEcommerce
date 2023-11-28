@@ -9,13 +9,17 @@ import org.thanhlong.Midterm.Models.User;
 import org.thanhlong.Midterm.Implement.CustomUserDetails;
 import org.thanhlong.Midterm.Repository.UserRepository;
 
+import java.util.Optional;
+
 @Service
 public class UserDetailServiceImpl implements UserDetailsService{
     @Autowired
     private UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUserName(username).get();
+        Optional<User> userOptional = userRepository.findByUserName(username);
+        User user = userOptional.orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+
         if (user == null) {
             throw new UsernameNotFoundException("Could not find user!!");
         }

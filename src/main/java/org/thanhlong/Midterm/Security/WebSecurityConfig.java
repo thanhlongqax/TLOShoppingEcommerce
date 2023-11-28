@@ -1,5 +1,6 @@
 package org.thanhlong.Midterm.Security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -15,7 +16,6 @@ import org.thanhlong.Midterm.Service.impl.UserDetailServiceImpl;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -47,7 +47,7 @@ public class WebSecurityConfig {
                         .loginPage("/Login")
                         .loginProcessingUrl("/PerformLogin")
                         .defaultSuccessUrl("/HomePage", true) // Chuyển hướng sau khi đăng nhập thành công
-                        .failureUrl("/Login") // Giữ người dùng ở trang đăng nhập sau khi đăng nhập thất bại
+                        //.failureUrl("/Login?error=true")// Giữ người dùng ở trang đăng nhập sau khi đăng nhập thất bại
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll())

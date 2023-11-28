@@ -29,13 +29,20 @@
           </div>
           <div class="actual-form">
             <div class="input-wrap">
-              <input type="text" th:field="*{name}" minlength="4" class="input-field" autocomplete="off" required placeholder="Name"/>
+              <input type="text" th:field="*{userName}" class="input-field" autocomplete="off" required placeholder="Username"/>
             </div>
             <div class="input-wrap">
               <input type="email" th:field="*{email}" class="input-field" autocomplete="off" required placeholder="Email"/>
             </div>
             <div class="input-wrap">
-              <input type="password" th:field="*{password}" minlength="4" class="input-field" autocomplete="off" required placeholder="Password"/>
+              <input type="text" th:field="*{name}" minlength="4" class="input-field" autocomplete="off" required placeholder="Name"/>
+            </div>
+            <div class="input-wrap">
+              <input type="text" th:field="*{phoneNumber}" minlength="4" class="input-field" autocomplete="off" required placeholder="Phonenumber"/>
+            </div>
+            <div class="input-wrap">
+              <input type="password" th:field="*{password}" minlength="4" class="input-field" autocomplete="off" required placeholder="Password" id="passwordField"/>
+              <button type="button" onclick="togglePasswordVisibility()" class="round-button"><img th:src="@{/Login_SiginUp_img/eye.svg}"></button>
             </div>
 
             <input type="submit" value="Đăng Kí" class="sign-btn" />
@@ -57,6 +64,7 @@
     </div>
   </div>
 </main>
+<script th:src="@{/Register.js}"></script>
 </body>
 
 </html>

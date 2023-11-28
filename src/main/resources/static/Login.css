@@ -16,7 +16,44 @@ input {
   color: #ff0000; /* Màu sắc cho thông báo lỗi */
   margin-top: 10px; /* Khoảng cách giữa thông báo và form */
 }
+/* CSS for error message */
+.text-danger {
+  color: #d9534f; /* Màu chữ đỏ, có thể thay đổi theo ý muốn */
+  font-weight: bold; /* Chữ in đậm */
+  margin-top: 10px; /* Khoảng cách từ trên xuống */
+  text-align: center; /* Căn giữa nội dung */
+  font-size: 16px; /* Kích thước chữ */
+}
 
+/* Optionally, you can add some animation */
+.text-danger {
+  animation: shake 0.5s; /* Thêm hiệu ứng rung nếu muốn */
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap button {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.round-button {
+  border: none;
+  border-radius: 50%;
+  width: 18px;
+  height: 5px;
+  cursor: pointer;
+}
 main {
   width: 100%;
   min-height: 100vh;

@@ -13,13 +13,10 @@
 <body>
 <main>
   <div class="box">
-    <div th:if="${param.error}">
-      <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
-    </div>
-
     <div th:if="${param.logout}">
       <p class="text-warning">You have been logged out.</p>
     </div>
+
 
 
     <!-- Form Đăng Nhập _________________________________________________________________________________ -->
@@ -38,14 +35,17 @@
               </button>
             </a>
           </div>
-
+          <div th:if="${param.error}">
+            <p class="text-danger" th:text="${session.SPRING_SECURITY_LAST_EXCEPTION.message}">Error message from Spring Security</p>
+          </div>
           <div class="actual-form">
             <div class="input-wrap">
-              <input  type="text" name="username" minlength="4" class="input-field" autocomplete="off" required placeholder="Email" />
+              <input  type="text" name="username" minlength="4" class="input-field" autocomplete="off" required placeholder="Username" />
             </div>
 
             <div class="input-wrap">
               <input  type="password" name="password" minlength="4" class="input-field" autocomplete="off" required placeholder="Password"/>
+              <button type="button" onclick="togglePasswordVisibility()" class="round-button"><img th:src="@{/Login_SiginUp_img/eye.svg}"></button>
             </div>
             <input type="checkbox" name="same" checked="checked" value="Remember me">Remember me
             <br>
@@ -68,7 +68,7 @@
   </div>
 </main>
 
-<script th:src="@{/Login_SignUp.js}"></script>
+<script th:src="@{/Login.js}"></script>
 </body>
 
 </html>
