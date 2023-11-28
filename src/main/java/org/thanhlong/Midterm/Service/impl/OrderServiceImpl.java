@@ -37,14 +37,12 @@ public class OrderServiceImpl implements OrderService {
         });
         return orderDTOS;
     }
-    public static OrderDTO mapToOrderDTO(User user, Order order) {
-        OrderDTO orderDTO = new OrderDTO();
-        orderDTO.setFullName(user.getName() != null ? user.getName() : "N/A");
-        orderDTO.setOrderCreated(order.getCreateDate() != null ? order.getCreateDate() : LocalDateTime.now());
-        orderDTO.setPhoneNumber(user.getPhoneNumber() != null ? user.getPhoneNumber() : "N/A");
-        orderDTO.setUserID(user.getId() != null ? user.getId() : -1L);
-        orderDTO.setEmail(user.getEmail() != null ? user.getEmail() : "N/A");
-        return orderDTO;
+    public void addOrderByOrderDTO(OrderDTO orderDTO){
+        Order order = new Order();
+        User user = userService.getUserById(orderDTO.getUserID()).get() ;
+        order.setUserOrder(user);
+        order.setCreateDate(orderDTO.getOrderCreated());
+        order.setOrder_total(orderDTO.getTotal());
+
     }
-//    public void getOrderbyId(Long userId , )
 }

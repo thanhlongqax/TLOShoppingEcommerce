@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.thanhlong</groupId>
-	<artifactId>Midterm</artifactId>
+	<artifactId>52100820</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>BackEnd</name>
 	<description>Demo project for Spring Boot</description>
@@ -86,11 +86,6 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

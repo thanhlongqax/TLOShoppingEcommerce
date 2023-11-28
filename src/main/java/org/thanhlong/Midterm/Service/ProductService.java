@@ -21,6 +21,6 @@ public interface ProductService {
 
 	List<ProductDTO> getAllProduct();
 
-	List<Product> searchByManyCondition(String category, String name,String brand,long minPrice,long maxPrice,String color);
+	List<Product> searchByManyCondition(String category, String name,String brand,int minPrice,int maxPrice,String color);
 
 }

@@ -57,10 +57,12 @@ public class CartApiController {
         orderDTO.setEmail(user.getEmail() != null ? user.getEmail() : "N/A");
         orderDTO.setTotal(totalPaid);
         orderDTO.setQuantity(quantity);
-
+        orderDTO.setAddress(user.getAddress());
+        orderDTO.setFullName(user.getName());
+        orderDTO.setPhoneNumber(user.getPhoneNumber());
         session.setAttribute("orderDetails", orderDTO);
+        orderService.addOrderByOrderDTO(orderDTO);
         return "";
-
     }
 
 //    @GetMapping("/cartItems")

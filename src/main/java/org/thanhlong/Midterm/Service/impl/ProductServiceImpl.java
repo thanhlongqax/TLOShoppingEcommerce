@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
     ProductRepository productRepository;
 
     @Override
-    public List<Product> searchByManyCondition(String category, String name, String brand, long minPrice, long maxPrice, String color) {
+    public List<Product> searchByManyCondition(String category, String name, String brand, int minPrice, int maxPrice, String color) {
         List<Object[]> temp = productRepository.searchByManyCondition(category, name, brand, color, minPrice, maxPrice);
         List<Product> products = new ArrayList<>();
 
@@ -36,7 +36,9 @@ public class ProductServiceImpl implements ProductService {
             searchColor.setName((String) obj[3]);
             product.setColor(searchColor);      // color
             product.setPrice((long) obj[4]);
-            product.setPicture((String) obj[6]);// price
+
+            product.setDescription((String)obj[5]); //description
+            product.setPicture((String) obj[6]);// picture
             products.add(product);
 
         }

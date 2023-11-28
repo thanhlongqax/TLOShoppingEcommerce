@@ -328,9 +328,7 @@ function filterProducts() {
           productDiv.innerHTML = `
         <div class="icons">
             <a onclick="addCart(this, ${product.id})" class="fas fa-shopping-cart"></a>
-            <a href="#" class="fas fa-heart"></a>
-            <a href="#" class="fas fa-search"></a>
-            <a href="#" class="fas fa-eye"></a>
+            <a onclick="viewProductDetail(${product.id})" class="fas fa-eye"></a>
         </div>
         <div class="image">
             <img src="/api/images/${product.picture}" alt="">

@@ -31,8 +31,8 @@ public class ProductApiController {
             @RequestParam(name = "color", required = false , defaultValue = "") String color,
             @RequestParam(name = "category", required = false ,defaultValue = "") String category,
             @RequestParam(name = "brand", required = false ,defaultValue = "") String brand,
-            @RequestParam(name = "minPrice", required = false,defaultValue = "0")  long minPrice,
-            @RequestParam(name = "maxPrice", required = false,defaultValue = "999999999") long maxPrice) {
+            @RequestParam(name = "minPrice", required = false,defaultValue = "0")  int minPrice,
+            @RequestParam(name = "maxPrice", required = false,defaultValue = "999999999") int maxPrice) {
         List<Product> filteredProduct = productService.searchByManyCondition(category ,productName , brand, minPrice , maxPrice ,color);
         return filteredProduct;
     }

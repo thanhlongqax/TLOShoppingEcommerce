@@ -1,20 +1,14 @@
 package org.thanhlong.Midterm.Security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.thanhlong.Midterm.Service.impl.UserDetailServiceImpl;
 
@@ -53,7 +47,7 @@ public class WebSecurityConfig {
                         .loginPage("/Login")
                         .loginProcessingUrl("/PerformLogin")
                         .defaultSuccessUrl("/HomePage", true) // Chuyển hướng sau khi đăng nhập thành công
-                        .failureUrl("/Login?error=true") // Giữ người dùng ở trang đăng nhập sau khi đăng nhập thất bại
+                        .failureUrl("/Login") // Giữ người dùng ở trang đăng nhập sau khi đăng nhập thất bại
                         .permitAll()
                 )
                 .logout((logout) -> logout.permitAll())
