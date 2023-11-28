@@ -235,14 +235,14 @@ In this project I will create test cases for that is ProductController and Brand
 ### Entity-relationship diagram
 <h2 align="center">
     <br>
-      <img src="https://github.com/thanhlongqax/anhReadme/blob/main/ERD.png?raw=true" alt="image" width="100%">
+      <img src="https://github.com/thanhlongqax/anhReadme/blob/main/ERDMidterm.png?raw=true" alt="image" width="100%">
     <br>
   </h2>
 
 ### Schema of the database
 <h2 align="center">
     <br>
-      <img src="https://user-images.githubusercontent.com/114124106/230023052-18dcbcf8-c752-4f47-8f53-946843a75e42.png" alt="image" width="100%">
+      <img src="https://github.com/thanhlongqax/anhReadme/blob/main/ERD.png?raw=true" alt="image" width="100%">
     <br>
   </h2>
   
