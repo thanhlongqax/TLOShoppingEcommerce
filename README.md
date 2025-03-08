@@ -1,141 +1,143 @@
 # 🛍️ TLOSHOPPING WEBSITE E-Commerce Platform
 
-Chào mừng bạn đến với **E-Commerce Platform**, một hệ thống thương mại điện tử được phát triển dựa trên **Spring Boot** với các công nghệ tiên tiến, mang đến trải nghiệm mua sắm trực tuyến hiện đại và bảo mật. Đây là bài tập giữa kỳ, nơi mình đã áp dụng những kiến thức về lập trình backend để xây dựng một nền tảng hoàn chỉnh. Hãy cùng khám phá những điểm nổi bật của dự án này! 🚀
+🇻🇳 [Tiếng Việt](README_vi.md)
+
+Welcome to **E-Commerce Platform**, an e-commerce system developed with **Spring Boot**, integrating modern technologies to provide a secure and seamless online shopping experience. This is my midterm project, where I have applied my backend programming knowledge to build a complete platform. Let's explore the highlights of this project! 🚀
 
 ---
 
-## 🌟 Công Nghệ & Nguyên Tắc Sử Dụng
+## 🌟 Technologies & Design Principles
 
-### 📌 Nguyên Tắc Thiết Kế
-- **Nguyên tắc Single Responsibility**: Mỗi lớp chỉ chịu trách nhiệm cho một nhiệm vụ duy nhất, giúp dễ dàng bảo trì và mở rộng.
-- **Kiến trúc Spring MVC**:
-  - **Controller Layer**: Tiếp nhận yêu cầu từ người dùng và xử lý tương tác với hệ thống.
-  - **Service Layer**: Xử lý logic nghiệp vụ.
-  - **Repository Layer**: Giao tiếp với cơ sở dữ liệu, xử lý truy vấn và trả về dữ liệu cần thiết.
+### 📌 Design Principles
+- **Single Responsibility Principle**: Each class has only one responsibility, making it easier to maintain and extend.
+- **Spring MVC Architecture**:
+  - **Controller Layer**: Handles user requests and interactions.
+  - **Service Layer**: Implements business logic.
+  - **Repository Layer**: Communicates with the database, processes queries, and returns necessary data.
 
-### 🔧 Công Nghệ Sử Dụng
-- **Java Spring Boot** (Maven Project) - Nền tảng chính của ứng dụng.
-- **PostgreSQL** - Cơ sở dữ liệu mạnh mẽ để lưu trữ thông tin.
-- **Docker** - Triển khai nhanh chóng và dễ dàng quản lý cơ sở dữ liệu.
-- **Spring Security** - Phân quyền và bảo mật hệ thống, đảm bảo chỉ Admin có quyền quản lý sản phẩm và đơn hàng.
-- **Thymeleaf** - Engine template giúp kết hợp backend và frontend một cách mượt mà.
+### 🔧 Technologies Used
+- **Java Spring Boot** (Maven Project) - The core framework of the application.
+- **PostgreSQL** - A robust database for storing information.
+- **Docker** - Enables quick deployment and efficient database management.
+- **Spring Security** - Ensures system security and role-based access, allowing only Admins to manage products and orders.
+- **Thymeleaf** - A template engine that smoothly integrates backend and frontend components.
 
 ---
 
-## 📂 Cấu Trúc Dự Án
+## 📂 Project Structure
 
-- **📁 Model**: Lưu trữ các thực thể (Entity) tương ứng với bảng dữ liệu trong Database.
-- **📁 Controller**: Xử lý yêu cầu từ người dùng và liên kết với Service Layer.
-- **📁 Service**: Chứa các phương thức thực hiện logic nghiệp vụ, giao tiếp với Controller.
-- **📁 Repository**: Giao tiếp với cơ sở dữ liệu, xử lý truy vấn.
-- **📁 Security**: Cấu hình Spring Security, phân quyền và quản lý truy cập.
-- **📁 Configuration**: Chứa DataLoader để khởi tạo dữ liệu (Brand, Category, Color, Product).
+- **📁 Model**: Stores entities corresponding to database tables.
+- **📁 Controller**: Handles user requests and connects with the Service Layer.
+- **📁 Service**: Contains business logic methods, interacting with Controllers.
+- **📁 Repository**: Manages database queries.
+- **📁 Security**: Configures Spring Security, handles authentication and authorization.
+- **📁 Configuration**: Contains DataLoader to initialize sample data (Brand, Category, Color, Product).
 - **📁 Resources**:
-  - **Static**: Chứa file CSS, hình ảnh.
-  - **Templates**: Chứa các file HTML cho giao diện người dùng.
+  - **Static**: Holds CSS files and images.
+  - **Templates**: Stores HTML files for the user interface.
 
 ---
 
-## 🔒 Quản Lý Phân Quyền với Spring Security
+## 🔒 Role-Based Access Management with Spring Security
 
-### 🎩 Quyền Hạn Của Admin
-- **Quyền truy cập toàn bộ hệ thống.**
-- **Quản lý sản phẩm** (thêm, sửa, xóa).
-- **Quản lý đơn hàng** (duyệt, xử lý đơn đặt hàng của khách hàng).
-- **Quản lý danh mục, thương hiệu, màu sắc sản phẩm.**
+### 🎩 Admin Privileges
+- **Full access to the system.**
+- **Product management** (add, edit, delete).
+- **Order management** (approve and process customer orders).
+- **Manage categories, brands, and product colors.**
 
-### 👤 Quyền Hạn Của Người Dùng
-- **Xem danh sách sản phẩm**.
-- **Xem chi tiết sản phẩm**.
-- **Thêm sản phẩm vào giỏ hàng và đặt hàng**.
-- **Không được truy cập vào trang quản trị của Admin.**
+### 👤 User Privileges
+- **View product listings.**
+- **View product details.**
+- **Add products to the cart and place orders.**
+- **Restricted access to admin pages.**
 
 ---
 
-## ⚙️ Hướng Dẫn Cài Đặt & Chạy Dự Án
+## ⚙️ Installation & Running the Project
 
-### 📥 Clone & Chạy Dự Án
+### 📥 Clone & Run the Project
 ```bash
-# Clone repository từ GitHub
+# Clone the repository from GitHub
 $ git clone https://github.com/thanhlongqax/Midterm.git
 
-# Mở dự án bằng IntelliJ IDEA hoặc VS Code
+# Open the project in IntelliJ IDEA or VS Code
 
-# Khởi động Docker để chạy PostgreSQL
+# Start Docker to run PostgreSQL
 
-# Không cần nhập dữ liệu thủ công, DataLoader trong Configuration sẽ tự động thêm dữ liệu mẫu.
+# No manual data input needed; the DataLoader in the Configuration folder will auto-generate sample data.
 
-# Nếu gặp lỗi với DataLoader, bạn có thể nhập dữ liệu bằng file SQL đi kèm dự án.
+# If there are issues with DataLoader, you can manually import data using the provided SQL file.
 
-# Chạy dự án
+# Run the project
 $ mvn spring-boot:run
 
-# Truy cập hệ thống tại
+# Access the system at
 $ http://localhost:8080/
 ```
 
-### 🔑 Đăng Nhập
-- **Tài khoản ADMIN:**
+### 🔑 Login Credentials
+- **ADMIN Account:**
   - Username: `admin`
   - Password: `12345678`
 
-- **Tài khoản USER:**
+- **USER Account:**
   - Username: `vovanthanh`
   - Password: `12345678`
 
-> **Lưu ý:** Mật khẩu đã được mã hóa trong database bằng Spring Security.
+> **Note:** Passwords are securely encrypted in the database using Spring Security.
 
 ---
 
 ## 📡 API Documentation
 
-Dưới đây là các API chính của hệ thống:
+Below are the key APIs of the system:
 
 ### 🔹 Brand API
-| Method  | URL          | Mô tả |
+| Method  | URL          | Description |
 |---------|------------|------------------|
-| `GET`   | `/api/brands` | Lấy danh sách tất cả các thương hiệu |
+| `GET`   | `/api/brands` | Retrieve the list of all brands |
 
 ### 🔹 Cart API
-| Method  | URL            | Mô tả |
+| Method  | URL            | Description |
 |---------|---------------|----------------------|
-| `GET`   | `/api/carts`  | Lấy danh sách giỏ hàng |
-| `POST`  | `/api/cart/save` | Lưu dữ liệu giỏ hàng vào database |
+| `GET`   | `/api/carts`  | Retrieve cart details |
+| `POST`  | `/api/cart/save` | Save cart data to the database |
 
 ### 🔹 Category API
-| Method  | URL             | Mô tả |
+| Method  | URL             | Description |
 |---------|----------------|----------------------------|
-| `GET`   | `/api/categories` | Lấy danh sách danh mục sản phẩm |
+| `GET`   | `/api/categories` | Retrieve the list of product categories |
 
 ### 🔹 Product API
-| Method  | URL                       | Mô tả |
+| Method  | URL                       | Description |
 |---------|---------------------------|-----------------------------|
-| `GET`   | `/api/products`           | Lấy danh sách tất cả sản phẩm |
-| `GET`   | `/api/products/{id}`      | Lấy thông tin sản phẩm theo ID |
-| `GET`   | `/api/products/filter`    | Lọc sản phẩm theo danh mục, thương hiệu, giá |
+| `GET`   | `/api/products`           | Retrieve the list of all products |
+| `GET`   | `/api/products/{id}`      | Retrieve product details by ID |
+| `GET`   | `/api/products/filter`    | Filter products by category, brand, and price |
 
-> **Lưu ý:** Để kiểm tra API, bạn có thể tắt Spring Security hoặc sử dụng JWT authentication.
+> **Note:** To test the API, you can disable Spring Security or use JWT authentication.
 
 ---
 
-## 🛠️ Kiểm Thử Với JUnit & Mockito
+## 🛠️ Testing with JUnit & Mockito
 
 ### ✅ BrandApiControllerTest
-- Kiểm thử thành công **4 test case** với dữ liệu giả lập.
+- Successfully tested **4 test cases** with mock data.
 
 ### ✅ ProductControllerTest
-- Kiểm thử thành công **4 test case**.
+- Successfully tested **4 test cases**.
 
 ---
 
-## 🏗️ Mô Hình Dữ Liệu
+## 🏗️ Database Model
 
-### ⚙️ Sơ Đồ Quan Hệ (ERD)
-Hệ thống được thiết kế theo mô hình chuẩn với các bảng như: **User, Product, Category, Brand, Order, Cart**. Các quan hệ giữa bảng được thể hiện qua sơ đồ ERD.
+### ⚙️ Entity-Relationship Diagram (ERD)
+The system is designed with a normalized database model, including tables such as **User, Product, Category, Brand, Order, Cart**. Relationships between tables are visualized in the ERD.
 
 ---
 
-## 📚 Tài Liệu Tham Khảo
+## 📚 References
 - [Spring Boot Official Docs](https://spring.io/)
 - [Spring Security Guide](https://docs.spring.io/spring-security/reference/index.html)
 - [Thymeleaf Documentation](https://www.thymeleaf.org/documentation.html)
@@ -143,4 +145,6 @@ Hệ thống được thiết kế theo mô hình chuẩn với các bảng như
 
 ---
 
-✨ Cảm ơn bạn đã quan tâm đến dự án của mình! Hy vọng bạn sẽ có trải nghiệm tuyệt vời khi khám phá hệ thống thương mại điện tử này. Nếu có bất kỳ thắc mắc nào, đừng ngần ngại liên hệ nhé! 🚀
+✨ Thank you for your interest in my project! I hope you have a great experience exploring this e-commerce system. Feel free to reach out if you have any questions! 🚀
+
+
