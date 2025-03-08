@@ -1,4 +1,4 @@
-# 🛍️ E-Commerce Platform - Midterm Assignment
+# 🛍️ TLOSHOPPING WEBSITE E-Commerce Platform
 
 Chào mừng bạn đến với **E-Commerce Platform**, một hệ thống thương mại điện tử được phát triển dựa trên **Spring Boot** với các công nghệ tiên tiến, mang đến trải nghiệm mua sắm trực tuyến hiện đại và bảo mật. Đây là bài tập giữa kỳ, nơi mình đã áp dụng những kiến thức về lập trình backend để xây dựng một nền tảng hoàn chỉnh. Hãy cùng khám phá những điểm nổi bật của dự án này! 🚀
 
