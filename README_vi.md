@@ -48,6 +48,9 @@ Chào mừng bạn đến với **E-Commerce Platform**, một hệ thống thư
 - **Xem danh sách sản phẩm**.
 - **Xem chi tiết sản phẩm**.
 - **Thêm sản phẩm vào giỏ hàng và đặt hàng**.
+- **Lọc sản phẩm theo danh mục, giá, v.v. 🧰**.
+- **Phân trang danh sách sản phẩm 📄**.
+- **Thanh toán qua VNPAY 💳**.
 - **Không được truy cập vào trang quản trị của Admin.**
 
 ---

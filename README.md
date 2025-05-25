@@ -51,7 +51,10 @@ Welcome to **E-Commerce Platform**, an e-commerce system developed with **Spring
 - **View product details.**
 - **Add products to the cart and place orders.**
 - **Restricted access to admin pages.**
-
+- **Filter products by category, price, etc. 🧰  .**
+- **Pagination through product lists 📄**
+- **Add products to the cart and place orders 🛒**\
+- **Payment via VNPAY 💳.**
 ---
 
 ## ⚙️ Installation & Running the Project
