@@ -1,6 +1,8 @@
 package org.thanhlong.Midterm.Api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.thanhlong.Midterm.DTO.ProductDTO;
@@ -21,9 +23,13 @@ public class ProductApiController {
         this.productService = productService;
     }
 
+//    @GetMapping
+//    public List<ProductDTO> getAllProducts() {
+//        return productService.getAllProduct();
+//    }
     @GetMapping
-    public List<ProductDTO> getAllProducts() {
-        return productService.getAllProduct();
+    public Page<ProductDTO> getAllProducts(Pageable pageable) {
+        return productService.getAllProducts(pageable);
     }
     @GetMapping("/filter")
     public List<Product> filterProducts(

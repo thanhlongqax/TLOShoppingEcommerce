@@ -63,7 +63,7 @@
     <section class="banner-container">
 
         <div class="banner">
-            <img src="/HomePage_img/shop_banner_img1.jpg" alt="">
+            <img src="/HomePage_img/iphone-14-plus-xanh-1.jpg" alt="">
             <div class="content">
                 <span>special offer</span>
                 <h3>upto 50% off</h3>
@@ -72,7 +72,7 @@
         </div>
 
         <div class="banner">
-            <img src="/HomePage_img/shop_banner_img2.jpg" alt="">
+            <img src="/HomePage_img/iphone-15-pro-max-black-2-1.jpg" alt="">
             <div class="content">
                 <span>special offer</span>
                 <h3>upto 50% off</h3>
@@ -124,7 +124,13 @@
         </div>
 
     </section>
-
+    <div id="pagination-container">
+<!--        <span>Page ${jsonData.number + 1} of ${jsonData.totalPages}</span>-->
+        <button onclick="onPageChange(0)">First</button>
+        <button onclick="onPageChange(-1)">Previous</button>
+        <button onclick="onPageChange(+1)">Next</button>
+<!--        <button onclick="onPageChange(${jsonData.totalPages - 1})">Last</button>-->
+    </div>
     <!-- featured section ends -->
 
 

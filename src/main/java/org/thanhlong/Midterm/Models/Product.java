@@ -34,7 +34,7 @@ public class Product implements Serializable {
     private long price;
     @Column(name = "picture")
     private String picture;
-    @Column(length = 300)
+    @Column(length = 1000)
     private String description;
 
     public String getBrandName() {

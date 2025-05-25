@@ -128,37 +128,87 @@ var swiper = new Swiper(".blogs-slider", {
 
 //_____________________________________________________________________________________________
 // Sử dụng Fetch API để gửi yêu cầu GET đến API
-var jsonData = {};
+// var jsonData = {};
+// const productContainer = document.getElementById("product-container");
+// fetch('http://localhost:8080/api/products')
+//     .then(response => response.json())
+//     .then(data => {
+//       jsonData = data
+//       data.forEach(product => { // Lặp qua từng sản phẩm trong mảng JSON và tạo HTML cho từng sản phẩm
+//         const productDiv = document.createElement("div");
+//         productDiv.className = "box"; // Đặt lớp CSS
+//         // Tạo nội dung sản phẩm
+//         productDiv.innerHTML = `
+//         <div class="icons">
+//             <a onclick="addCart(this, ${product.id})" class="fas fa-shopping-cart"></a>
+//             <a onclick="viewProductDetail(${product.id})" class="fas fa-eye"></a>
+//         </div>
+//         <div class="image">
+//             <img src="/api/images/${product.picture}" alt="">
+//         </div>
+//         <div class="content">
+//             <h3>${product.name}</h3>
+//             <div class="price">
+//                 <div class="amount">${product.price} .000 VND</div>
+//             </div>
+//             <p>${product.description}</p>
+//         </div>
+//     `;
+//         // Đưa sản phẩm vào vùng chứa
+//         productContainer.appendChild(productDiv);
+//       });
+//     })
+//     .catch(error => console.error('Error:', error));
+let jsonData = {};
 const productContainer = document.getElementById("product-container");
-fetch('http://localhost:8080/api/products')
-    .then(response => response.json())
-    .then(data => {
-      jsonData = data
-      data.forEach(product => { // Lặp qua từng sản phẩm trong mảng JSON và tạo HTML cho từng sản phẩm
-        const productDiv = document.createElement("div");
-        productDiv.className = "box"; // Đặt lớp CSS
-        // Tạo nội dung sản phẩm
-        productDiv.innerHTML = `
-        <div class="icons">
-            <a onclick="addCart(this, ${product.id})" class="fas fa-shopping-cart"></a>
-            <a onclick="viewProductDetail(${product.id})" class="fas fa-eye"></a>
-        </div>
-        <div class="image">
-            <img src="/api/images/${product.picture}" alt="">
-        </div>
-        <div class="content">
-            <h3>${product.name}</h3>
-            <div class="price">
-                <div class="amount">${product.price} .000 VND</div>
+
+// Hàm để lấy dữ liệu từ API với trang và kích thước trang cụ thể
+function fetchData(page, size) {
+  fetch(`http://localhost:8080/api/products?page=${page}&size=${size}`)
+      .then(response => response.json())
+      .then(data => {
+        jsonData = data;
+        renderProducts(data.content);
+      })
+      .catch(error => console.error('Error:', error));
+}
+// Hàm để hiển thị sản phẩm trên trang web
+function renderProducts(products) {
+  productContainer.innerHTML = ''; // Xóa nội dung cũ
+
+  products.forEach(product => {
+    const productDiv = document.createElement("div");
+    productDiv.className = "box";
+    productDiv.innerHTML = `
+            <div class="icons">
+//              <a onclick="addCart(this, ${product.id})" class="fas fa-shopping-cart"></a>
+                <a onclick="viewProductDetail(${product.id})" class="fas fa-eye"></a>
             </div>
-            <p>${product.description}</p>
-        </div>
-    `;
-        // Đưa sản phẩm vào vùng chứa
-        productContainer.appendChild(productDiv);
-      });
-    })
-    .catch(error => console.error('Error:', error));
+            <div class="image">
+                <img src="/api/images/${product.picture}" alt="">
+            </div>
+            <div class="content">
+                <h3>${product.name}</h3>
+                <div class="price">
+                    <div class="amount">${product.price} .000 VND</div>
+                </div>
+                <p>${product.description}</p>
+            </div>
+        `;
+
+    productContainer.appendChild(productDiv);
+  });
+}
+
+// Hàm để xử lý sự kiện khi người dùng chuyển trang
+function onPageChange(page) {
+  const pageSize = jsonData.size;
+  fetchData(page, pageSize);
+}
+
+// Mặc định, hiển thị trang đầu tiên khi trang web được tải
+const defaultPage = 0;
+fetchData(defaultPage, jsonData.size);
 
 // ______________________________________________Chức Năng Xem Chi tiet San Pham____________________________________________________
 function viewProductDetail(id) {
@@ -184,8 +234,19 @@ function addCart(product, productId) {
   const tenSp = productDiv.querySelector(".content h3").innerText;
   const giaSp = productDiv.querySelector(".content .amount").innerText;
   const chiTietSp = productDiv.querySelector(".content p").innerText;
-  const brandSp = jsonData.find(item => item.id === productId).brand; // Lấy giá trị brand từ dữ liệu JSON
-  const colorSp = jsonData.find(item => item.id === productId).color; // Lấy giá trị color từ dữ liệu JSON
+  let brandSp;
+  let colorSp;
+  // const values = Object.values(jsonData);
+  // Lặp qua thuộc tính của đối tượng jsonData
+  for (const key in jsonData) {
+    if (jsonData[key].id === productId) {
+      brandSp = jsonData[key].brand;
+      colorSp = jsonData[key].color;
+      break;
+    }
+  }
+  // const brandSp = values.find(item => item.id === productId).brand; // Lấy giá trị brand từ dữ liệu JSON
+  // const colorSp = values.find(item => item.id === productId).color; // Lấy giá trị color từ dữ liệu JSON
   const Sp = {
     id: productId,
     picture: hinhSp,

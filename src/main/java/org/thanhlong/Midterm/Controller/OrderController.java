@@ -29,26 +29,37 @@ public class OrderController {
     public OrderController(OrderServiceImpl orderService) {
         this.orderService = orderService;
     }
-//    @GetMapping(value = "/order/")
-//    public String getAllOrder(Model model) throws Exception {
-//        List<OrderDTO> orderDTOS = new ArrayList<>();
-//
-//        model.addAttribute("orders" , orderDTOS);
-//        return "OrderDetail";
-//    }
     @GetMapping(value = "/orderPage")
-    public String orderPage(Model model, HttpSession session){
-        // Lấy orderDetails từ session
-        OrderDTO orderDTO = (OrderDTO) session.getAttribute("orderDetails");
+    public String orderPage(@RequestParam("vnp_ResponseCode") String responseCode,Model model, HttpSession session){
+        if (responseCode.equals("00")) {
+            // Lấy orderDetails từ session
+            OrderDTO orderDTO = (OrderDTO) session.getAttribute("orderDetails");
+            orderService.addOrderByOrderDTO(orderDTO);
+            // Đưa orderDetails vào model để sử dụng trong view
+            model.addAttribute("orderDetails", orderDTO);
 
-        // Đưa orderDetails vào model để sử dụng trong view
-        model.addAttribute("orderDetails", orderDTO);
+            return "OrderDetail";
+        }else {
+            return "OrderDetail";
+        }
 
-        return "OrderDetail";
     }
     @GetMapping(value = {"/Admin/Order"})
-    public String Order_Admin() {
+    public String Order_Admin(Model model) {
+        List<OrderDTO> orders = orderService.getAllOrder();
+        model.addAttribute("orders",orders);
         return "/Admin/Order_Admin";
     }
+    @GetMapping("/deleteOrder/{id}")
+    public String deleteOrder_Admin(@PathVariable Long id){
+        orderService.deleteOrderById(id);
+        return "redirect:/Admin/Order";
+    }
+    @GetMapping("/editOrder/{id}")
+    public String editOrder_Admin(@PathVariable Long id){
+        orderService.updateOrderById(id);
+        return "redirect:/Admin/Order";
+    }
+
 }
 

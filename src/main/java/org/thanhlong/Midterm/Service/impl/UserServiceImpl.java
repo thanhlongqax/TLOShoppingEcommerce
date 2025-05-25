@@ -2,11 +2,14 @@ package org.thanhlong.Midterm.Service.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.thanhlong.Midterm.Models.User;
 import org.thanhlong.Midterm.Repository.UserRepository;
 import org.thanhlong.Midterm.Service.UserService;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +17,8 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    BCryptPasswordEncoder bCryptPasswordEncoder;
     @Override
     public List<User> getAllUser() {
         return userRepository.findAll();
@@ -35,22 +40,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> getUserByName(String email) {
-        return userRepository.findByName(email);
-    }
-    @Override
     public Optional<User> getUserByUserName(String userName) {
         return userRepository.findByUserName(userName);
     }
 
-    @Override
-    public Optional<User> getUserByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
 
     @Override
     public User saveUser(User user) {
         return userRepository.save(user);
     }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email).orElse(null);
+    }
+
 
 }

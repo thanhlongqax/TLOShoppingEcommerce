@@ -25,7 +25,6 @@ public class User implements Serializable {
 
     @Column(nullable = false, unique = true)
     @NotEmpty
-    //@Email(message = "{error.invalid_email}")
     private String email;
     private String userName;
     private String phoneNumber;
@@ -43,7 +42,6 @@ public class User implements Serializable {
 
     @OneToMany(mappedBy = "userOrder", cascade = CascadeType.ALL)
     private List<Order> orders;
-
     @Override
     public String toString() {
         return "User [id=" + id + ", name=" + name + ", address=" + address + ", email=" + email + "]";

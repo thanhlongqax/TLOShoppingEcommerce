@@ -101,29 +101,25 @@
               <div class="content table-responsive table-full-width">
                 <table class="table table-striped" id="table">
                   <thead>
-                    <tr>
+                    <tr >
                       <th>ID</th>
                       <th>Tài Khoản</th>
-                      <th>Sản Phẩm</th>
-                      <th>Danh Mục</th>
-                      <th>Màu Sắc</th>
-                      <th>Số Lượng</th>
+                      <th>Tổng Tiền</th>
+                      <th>Ngày Đặt</th>
                       <th>Trạng Thái</th>
                       <th>Hành Động</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                    <tr th:each="order : ${orders}">
+                      <td th:text="${order.getId()}"></td>
+                      <td th:text="${order.getEmail()}"></td>
+                      <td th:text="${order.getTotal()}"></td>
+                      <td th:text="${order.getOrderCreated()}"></td>
+                      <td th:text="${order.getOrder_status()}"></td>
                       <td>
-                        <button type="button" class="btn btn-success"><a href=""><img th:src="@{/Logo_Admin/check-lg.svg}" alt=""></a></button>
-                        <button type="button" class="btn btn-danger"><a href=""><img th:src="@{/Logo_Admin/trash.svg}" alt=""></a></button>
+                        <button type="button" class="btn btn-success"><a th:href="@{/editOrder/{id}(id=${order.id})}"><img th:src="@{/Logo_Admin/check-lg.svg}" alt=""></a></button>
+                        <button type="button" class="btn btn-danger"><a th:href="@{/deleteOrder/{id}(id=${order.id})}"><img th:src="@{/Logo_Admin/trash.svg}" alt=""></a></button>
                       </td>
                     </tr>
                   </tbody>

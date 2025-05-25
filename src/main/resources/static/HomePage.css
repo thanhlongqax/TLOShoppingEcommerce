@@ -1148,5 +1148,27 @@ select {
     width: 100%;
   }
 }
+/* trang homepage     _________________________*/
+#pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 8px 16px;
+  margin: 0 5px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #f0f0f0;
+}
 
 /*# sourceMappingURL=style.css.map */

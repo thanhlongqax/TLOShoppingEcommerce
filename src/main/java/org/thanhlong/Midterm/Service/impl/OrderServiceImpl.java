@@ -23,15 +23,16 @@ public class OrderServiceImpl implements OrderService {
     public List<OrderDTO> getAllOrder(){
         List<Order>  orders = orderRepository.findAll();
         List<OrderDTO> orderDTOS = new ArrayList<>();
-        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        User user = userService.getUserByUserName(userName).get();
         orders.forEach(item ->{
             OrderDTO orderDTO = new OrderDTO();
-            orderDTO.setFullName(user.getName() != null ? user.getName() : "N/A");
+            orderDTO.setId(item.getId());
+            orderDTO.setTotal(item.getOrder_total());
+            orderDTO.setOrder_status(item.getOrder_status());
+            orderDTO.setFullName(item.getUserOrder() != null ? item.getUserOrder().getName() : "N/A");
             orderDTO.setOrderCreated(item.getCreateDate() != null ? item.getCreateDate() : LocalDateTime.now());
-            orderDTO.setPhoneNumber(user.getPhoneNumber() != null ? user.getPhoneNumber() : "N/A");
-            orderDTO.setUserID(user.getId() != null ? user.getId() : -1L); // Điều chỉnh kiểu dữ liệu tùy thuộc vào kiểu của user.getId()
-            orderDTO.setEmail(user.getEmail() != null ? user.getEmail() : "N/A");
+            orderDTO.setPhoneNumber(item.getUserOrder() != null ? item.getUserOrder().getPhoneNumber() : "N/A");
+            orderDTO.setUserID(item.getUserOrder() != null ? item.getUserOrder().getId() : -1L); // Điều chỉnh kiểu dữ liệu tùy thuộc vào kiểu của user.getId()
+            orderDTO.setEmail(item.getUserOrder() != null ? item.getUserOrder().getEmail() : "N/A");
             orderDTOS.add(orderDTO);
 
         });
@@ -43,6 +44,15 @@ public class OrderServiceImpl implements OrderService {
         order.setUserOrder(user);
         order.setCreateDate(orderDTO.getOrderCreated());
         order.setOrder_total(orderDTO.getTotal());
-
+        order.setOrder_status("Chưa Giao Hàng");
+        orderRepository.save(order);
+    }
+    public void deleteOrderById(Long id){
+        orderRepository.deleteById(id);
+    }
+    public void updateOrderById(Long id){
+        Order order = orderRepository.findById(id).get();
+        order.setOrder_status("Đang Giao Hàng");
+        orderRepository.save(order);
     }
 }

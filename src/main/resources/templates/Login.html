@@ -44,15 +44,15 @@
             </div>
 
             <div class="input-wrap">
-              <input  type="password" name="password" minlength="4" class="input-field" autocomplete="off" required placeholder="Password"/>
+              <input  type="password" name="password" minlength="4" class="input-field" autocomplete="off" required placeholder="Password" id="passwordField"/>
               <button type="button" onclick="togglePasswordVisibility()" class="round-button"><img th:src="@{/Login_SiginUp_img/eye.svg}"></button>
             </div>
             <input type="checkbox" name="same" checked="checked" value="Remember me">Remember me
             <br>
             <br>
             <input type="submit" value="Đăng Nhập" class="sign-btn" />
-            <p class="text">
-              <a href="#">Quên Mật Khẩu</a>
+            <p class="text" style="text-decoration: none; font-size: 13px;" >
+              <a th:href="@{/forgot_password}">Quên Mật Khẩu</a>
             </p>
           </div>
         </form>
@@ -64,7 +64,6 @@
         </div>
       </div>
     </div>
-  </div>
   </div>
 </main>
 

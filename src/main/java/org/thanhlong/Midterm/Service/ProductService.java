@@ -1,6 +1,8 @@
 package org.thanhlong.Midterm.Service;
 
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.thanhlong.Midterm.DTO.ProductDTO;
 import org.thanhlong.Midterm.Models.Product;
@@ -12,6 +14,7 @@ import java.util.Optional;
 public interface ProductService {
 
 	List<Product> getAllProductByCategoryId(Long id);
+	Page<ProductDTO> getAllProducts(Pageable pageable);
 
 	Optional<Product> getProductById(Long id);
 

@@ -2,6 +2,9 @@ package org.thanhlong.Midterm.Service.impl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 import org.thanhlong.Midterm.DTO.ProductDTO;
 import org.thanhlong.Midterm.Models.Brand;
@@ -45,7 +48,41 @@ public class ProductServiceImpl implements ProductService {
         return products;
     }
 
+    @Override
+    public Page<ProductDTO> getAllProducts(Pageable pageable) {
+        Page<Product> productsPage = productRepository.findAll(PageRequest.of(pageable.getPageNumber(), 5));
+        return productsPage.map(this::convertToDTO);
+    }
+    private ProductDTO convertToDTO(Product product) {
+        ProductDTO dto = new ProductDTO();
+        dto.setPicture(product.getPicture());
+        dto.setId(product.getId());
+        dto.setName(product.getName());
+        dto.setDescription(product.getDescription());
 
+        // Null checks for associated entities
+        if (product.getColor() != null) {
+            dto.setColor(product.getColor().getName());
+        } else {
+            dto.setColor("N/A");
+        }
+
+        dto.setPrice(product.getPrice());
+
+        if (product.getCategory() != null) {
+            dto.setCategory(product.getCategory().getName());
+        } else {
+            dto.setCategory("N/A");
+        }
+
+        if (product.getBrand() != null) {
+            dto.setBrand(product.getBrand().getName());
+        } else {
+            dto.setBrand("N/A");
+        }
+
+        return dto;
+    }
 
     @Override
     public List<ProductDTO> getAllProduct() {
@@ -112,5 +149,4 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAllProductByCategoryId(Long id) {
         return productRepository.findAllByCategoryId(id);
     }
-
 }

@@ -10,10 +10,12 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class OrderDTO {
+    private long id;
     private String FullName;
     private LocalDateTime OrderCreated;
     private String address;
     private int Total;
+    private String Order_status;
     private String phoneNumber;
     private Long userID;
     private String email;

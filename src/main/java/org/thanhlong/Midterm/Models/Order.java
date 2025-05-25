@@ -31,7 +31,7 @@ public class Order implements Serializable {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems;
 
-    private double order_total;
+    private int order_total;
 
     //    @Column(name = "order_status", columnDefinition = "VARCHAR(30) DEFAULT 'pending'")
     private String order_status;

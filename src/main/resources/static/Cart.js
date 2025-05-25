@@ -161,7 +161,7 @@ function saveCartToDatabase() {
       .then(response => response.text())
       .then(data => {
           sessionStorage.clear();
-          window.location.href = "/orderPage";
+          window.location.href = "/payment";
 
       })
 }
